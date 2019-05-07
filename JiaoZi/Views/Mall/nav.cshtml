@@ -1,0 +1,46 @@
+﻿@model  IEnumerable<JiaoZi.Models.Category>
+
+
+
+<style>
+    .na {
+        width: 1759px;
+        /*width:1383px;*/
+        height: 40px;
+        background-color: dimgray;
+        text-align: center;
+    }
+
+        .na span {
+            width: 70px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .na a {
+            text-decoration: none;
+            color: aliceblue;
+        }
+
+            .na a:hover {
+                color: darkred;
+            }
+</style>
+
+
+
+<div class="na"  >
+    @*传入name,进入相应视图*@
+    <span style="margin-left:-40px;" ><a href="@Url.Action("index","Home")">主页</a></span>
+    <span style="background-color:red"><a href="@Url.Action("index","Mall")">首页</a></span>
+    @foreach (var item in Model)
+    {
+        <span>
+            <a href="@Url.Action("BooksShow","Mall",new {CategoryName=@item.CategoryName.Trim()})">@item.CategoryName</a>
+        </span>
+        
+    }
+
+</div>

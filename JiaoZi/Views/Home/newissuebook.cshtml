@@ -1,0 +1,28 @@
+﻿@model JiaoZi.Models.shouyeban
+    <style>
+        .row a{
+            text-decoration:none;
+        }
+        .row a:hover{
+            text-decoration:none;
+        }
+    </style>
+<div id="portfolio" class="container-fluid text-center bg-grey">
+    @*<h2>Portfolio</h2>
+        <h4>What we have created</h4>*@
+    <div class="row text-center">
+        @foreach (var item in Model.Newissuebook)
+        {
+            <div class="col-sm-3">
+                <a href="@Url.Action("BooksDetails","Mall",new { id=item.BookID})" style="color:black">
+                    <div class="thumbnail">
+                        <img id="top3img" alt="封面" src="@Html.DisplayFor(modelItem=>item.BookImage)" />
+                        <p><strong>@item.BookName</strong></p>
+                        <h3>$@item.Price</h3>
+                        <h4>@item.BookAuthor</h4>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

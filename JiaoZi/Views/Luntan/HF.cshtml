@@ -1,0 +1,19 @@
+﻿
+@model JiaoZi.Models.TieziViewModel
+    @{ 
+        Layout = null;
+    }
+<div style="height:100%;width:100%;margin-left:20px;color:black" id="HFhidden">
+    @foreach(var item in Model.Gethuifu)
+    {
+
+       @*@Html.DisplayFor(modelItem => item.RemarkComments, new { pinglunid = item.RemarkCommentID })
+        @Html.DisplayFor(modelItem => item.Reply_Time, new { pinglunid = item.RemarkCommentID })
+        @Html.DisplayFor(modelItem => item.Users.UserName, new { \pinglunid = item.RemarkCommentID })*@
+        <div>
+        <a>@item.Users.UserName</a> 回复 <a>@item.RemarkComments.Users.UserName:</a><p>&nbsp;&nbsp;@item.Reply_Content</p>
+         </div>
+         <div>@item.Reply_Time</div>
+    }
+</div>
+

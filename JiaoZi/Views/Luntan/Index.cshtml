@@ -1,0 +1,207 @@
+﻿
+@{ 
+    Layout = "~/Views/Shared/Layoutluntan.cshtml";
+}
+@using PagedList.Mvc;
+@using PagedList
+@model PagedList.IPagedList<JiaoZi.Models.Remark_User_Comments_Reply >
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+        
+    <link href="~/Content/Search.css" rel="stylesheet" />
+    <link href="~/Content/iconfont.css" rel="stylesheet" />
+
+    <link href="~/Content/iconfont1.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/line.css" rel="stylesheet" />
+    
+    <style>
+        
+    </style>
+
+    <div class="container" id="con">
+        <div class="jumbotron" style="max-height:500px;height:176px;">
+            <div style="float:left;margin-top:-69px;margin-right:60px;">
+                <i class="iconfont">&#xe60f;</i>
+            </div>
+            <div style="float:left">
+                <h1>教师资格证论坛</h1>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    @*<div class="container" style="padding:40px 160px;">*@
+    <div style="background-color:coral">
+        <div class="container" style="padding-left:160px;padding-right:160px">
+            
+            <div id="myCarousel" class="carousel slide">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    <div class="item active" style="height:511px;width:851px">
+                        <img src="~/images/Lunbo/1.jpg" alt="First slide" style="height:100%;width:100%">
+                    </div>
+                    <div class="item" style="height:511px;width:851px">
+                        <img src="~/images/Lunbo/2.jpg" alt="Second slide" style="height:100%;width:100%">
+                    </div>
+                    <div class="item" style="height:511px;width:851px">
+                        <img src="~/images/Lunbo/3.jpg" alt="Third slide" style="height:100%;width:100%">
+                    </div>
+                    <div class="item" style="height:511px;width:851px">
+                        <img src="~/images/Lunbo/4.jpg" alt="Third slide" style="height:100%;width:100%">
+                    </div>
+                </div>
+                @*轮播（Carousel）导航*@
+                <a href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-fast-backward" style="font-size:large">上一页</span>
+
+                </a>
+                <a href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-fast-forward" style="font-size:large;margin-left:82%">下一页</span>
+
+                </a>
+            </div>
+           </div>
+
+        </div>
+   
+
+        <div class="container" style="padding:40px 160px;">
+            <h2 id="section-1">帖子</h2>
+        </div>
+        <div style="background-color:antiquewhite">
+            <div class="container" style="padding:40px 160px;">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="#home" data-toggle="tab" style="line-height:75px">
+                            默认排行
+                        </a>
+                    </li>
+                    <li><a href="#zuixin" data-toggle="tab" style="line-height:75px">最新</a></li>
+                    <li><a href="#retie" data-toggle="tab" style="line-height:75px">热贴</a></li>
+                    <li><a href="@Url.Action("fatie", "Luntan")" style="line-height:75px">我要发帖</a></li>
+
+                    <li>
+                        @using (Html.BeginForm("Search", "Search", FormMethod.Post))
+                        {
+
+                            <div class="wyInput" id="myInput">
+                                <div class="wyinput-group">
+                                   <div>
+                      <div style="float:left">@Html.TextBox("title", "请输入关键字", new { @class = "p" })</div>
+
+                        <button style="line-height:26px;width:50px;float:left">搜 索</button>
+                        </div>
+                                </div>
+                            </div>
+                        }
+                    </li>
+
+                </ul>
+                <p style="margin-top:50px"><i style="display:inline-block;width:15px;"></i>标题<i style="display:inline-block;width:323px;"></i>作者<i style="display:inline-block;width:170px;"></i>评论数<i style="display:inline-block;width:121px;"></i>发帖时间</p>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="home">
+
+                        @foreach (var item in Model)
+                        {
+                            <div>
+
+                                <div class="col-md-5" style="height:50px;padding-top:10px;">
+                                    <a href="@Url.Action("Index2", "Luntan", new { id = item.RemarkID })"><span style="color:black">@Html.DisplayFor(modelItem => item.Title)</span></a>
+
+                                </div>
+
+
+                                <div class="col-md-3" style="height:50px;padding-top:10px;">
+                                    <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid = item.UserID})"style="color:black">
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </a>
+                                </div>
+
+
+                                <div class="col-md-2" style="height:50px;padding-top:10px;"> @Html.DisplayFor(modelItem => item.pinglunshu)</div>
+
+
+                                <div class="col-md-2" style="height:50px;padding-top:10px;">@Html.DisplayFor(modelItem => item.Remark_time)</div>
+                            </div>
+                        }
+
+                    </div>
+
+                    <div class="tab-pane fade" id="zuixin">
+
+                        @foreach (var item in Model.OrderByDescending(r => r.Remark_time))
+                        {
+                            <div>
+                                <div class="col-md-5" style="height:50px;padding-top:10px;">
+                                    <a href="@Url.Action("Index2", "Luntan", new { id = item.RemarkID })" style="color:black">@Html.DisplayFor(modelItem => item.Title)</a>
+                                </div>
+
+                             
+                                <div class="col-md-3" style="height:50px;padding-top:10px;">
+                                    <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid = item.UserID})"style="color:black">
+                                       @Html.DisplayFor(modelItem => item.UserName)
+                                    </a>
+                                @*<a href="#" style="color:black">@Html.DisplayFor(modelItem => item.UserName)</a>*@
+                                </div>
+
+                                <div class="col-md-2" style="height:50px;padding-top:10px;"> @Html.DisplayFor(modelItem => item.pinglunshu)</div>
+
+                                <div class="col-md-2" style="height:50px;padding-top:10px;">@Html.DisplayFor(modelItem => item.Remark_time)</div>
+                            </div>
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="retie">
+                        @foreach (var item in Model.OrderByDescending(r => r.pinglunshu))
+                        {
+                            <div>
+                                <div class="col-md-5" style="height:50px;padding-top:10px;">
+                                    <a href="@Url.Action("Index2", "Luntan", new { id = item.RemarkID })" style="color:black">@Html.DisplayFor(modelItem => item.Title)</a>
+                                </div>
+
+
+                                <div class="col-md-3" style="height:50px;padding-top:10px;">
+                                    <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid = item.UserID})"  style="color:black">
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </a>
+                                </div>
+
+                                <div class="col-md-2" style="height:50px;padding-top:10px;">@Html.DisplayFor(modelItem => item.pinglunshu)</div>
+
+
+                                <div class="col-md-2" style="height:50px;padding-top:10px;">@Html.DisplayFor(modelItem => item.Remark_time)</div>
+                            </div>
+                        }
+
+                    </div>
+
+                    @Html.PagedListPager(Model, page => Url.Action("Index", "Luntan", new { page = page }))
+                </div>
+            </div>
+           </div>
+    
+  <footer class="container-fluid text-center">
+    <a href="#con" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+
+</footer>
+
+
+
+

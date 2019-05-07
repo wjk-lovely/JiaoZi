@@ -1,0 +1,97 @@
+﻿ /*body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}*/
+
+ /*Set padding to keep content from hitting the edges*/ 
+.body-content {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+ /*Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column*/ 
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+ /*Set width on the form input elements since they're 100% wide by default*/ 
+input,
+select,
+textarea {
+    max-width: 200px;
+}
+
+          #Mydaohang 
+               {
+                background-color:black;
+                border:3px double;
+                  }
+         .center {
+                 margin: 20px;
+                 width: 90%;
+                 height: 45%;
+                 padding: 5px;
+
+                 }
+        #news
+        { 
+            margin-top:29px;
+            margin-left:25px;
+                 width: 90%;
+                 height: 100%;
+                 border: 3px solid #9D9D9D;
+                 padding: 5px;
+            
+        }
+      
+		.ban3
+		{
+			margin: 40px;
+		}
+		.ban3_book
+		{
+			margin:10px;
+			width: 50px;
+			height: 50px;
+		}
+		.red
+		{
+			color: red;
+		}
+		.Mypanel
+		{
+			border: 3px solid #EBF6F7;
+			background-color:black;
+		}
+		#MYpanel-head
+		{
+            background-color:black;
+			
+		}
+    #rexiao 
+    {
+        margin-left:0px;
+        margin-right:0px;
+         }
+    #search-wrap{
+          position:absolute;
+          margin-top:119px;
+          left:50%;
+          margin-left:-948px;
+          width:500px;
+          height:60px;
+          border-radius:18px;
+          box-shadow: 0 0 3px rgba(0,0,0,.14);
+          background-color:darkred;
+          
+         
+     }
+#search_nav {
+    background-color:darkred;
+    z-index:1;
+    margin-top:100px;
+    opacity:0.7;
+}
+

@@ -1,0 +1,14 @@
+﻿.box {
+   height: 60px;
+   line-height: 60px;
+   text-align: center;
+}
+ .box .line {
+   display: inline-block;
+   width: 150px;
+   border-top: 1px solid #ccc ;
+}
+.box .txt {
+   color: #686868;
+   vertical-align: middle;
+}

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<JiaoZi.Models.Video>
+@{
+    Layout = "~/Views/Shared/Layoutkongjian.cshtml";
+
+}
+@*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/zui.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/zui.min.js"></script>
+<link href="~/Content/zui.uploader.min.css" rel="stylesheet" />
+<script src="~/Scripts/zui.uploader.min.js"></script>*@
+
+@*//文件上传*@
+<div class="tab-pane active" id="upload" style="background-color:white;height:800px;width:100%">
+    <div class="uploader" data-ride="uploader" data-url="/Kongjian/video">
+        <div class="uploader-message">
+            <div class="content"></div>
+            <button type="button" class="close">×</button>
+        </div>
+        <div class="uploader-files file-list" data-drag-placeholder="请拖拽文件到此处"></div>
+        <div class="uploader-actions">
+            <div class="uploader-status pull-right text-muted"></div>
+            <button type="button" class="btn btn-link uploader-btn-browse"><i class="icon icon-plus"></i> 选择文件</button>
+            <button type="button" class="btn btn-link uploader-btn-start"><i class="icon icon-cloud-upload"></i> 开始上传</button>
+        </div>
+    </div>
+    @Html.Action("allvideo")
+</div>

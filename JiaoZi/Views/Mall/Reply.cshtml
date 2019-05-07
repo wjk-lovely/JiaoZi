@@ -1,0 +1,35 @@
+﻿@model IEnumerable<JiaoZi.Models.BookRelpy>
+
+<style>
+    .replycontent {
+        margin-left: 40px;
+    }
+
+
+    .Reply_text {
+        margin: 0 auto;
+        width: 200px;
+        height: 30px;
+    }
+</style>
+
+@foreach (var i in Model)
+{
+    <div class="replybox">
+        <dl class="replylist">
+            <dd class="replycontent">
+                <a class="replyhead" data-id="@i.Ruser_ID" data-Bookid="@i.BookCommentID">@i.Users1.UserName</a>回复 <a class="replyhead">@i.Users.UserName</a>             
+                <span class="content">@i.Reply_Content.Trim()</span>
+                <span style="margin-left:506px;">@i.Reply_Time</span>
+            </dd>
+            <dd>
+                @Html.Partial("ReplyBox", "Mall")
+                @*<span><span style="margin-left:700px;">@i.Reply_Time</span><button class="Re_tishi">回复</button></span>
+                <div class="Repl_box">
+                    <textarea class="Reply_text"></textarea>
+                    <button type="button" class="Re_tijiao">提交</button>
+                </div>*@
+            </dd>
+        </dl>
+    </div>
+}

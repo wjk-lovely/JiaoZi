@@ -1,0 +1,88 @@
+﻿@model JiaoZi.Models.Kongjianban
+@{ 
+    Layout = null;
+    ViewBag.id = @Session["otheruserid"];
+    Session["1"] = @Session["otheruserid"];
+    ViewBag.img = @Session["otheruserimg"];
+    Session["2"] = @Session["otheruserimg"];
+}
+<p>个人主页</p>
+@Session["otheruserid"]
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<hr />
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-heading">
+                <div class="row">
+                    <div style="height:150px" class="col-md-3">
+                        <img src="@Session["otheruserimg"]" style="height:150px;width:150px;border:5px ridge white" />
+                    </div>
+                    <div class="col-md-9 row" style="height:100px;font-size:large;color:black">
+                        <p>网名</p>
+                        <hr />
+                        <div class="col-md-4">
+                            <img src="~/images/icon/icon/love.ico" style="height:10px;width:10px;" />
+                            <a href="@Url.Action("guanzhu", "Kongjian", new {userid1=@ViewBag.id, @style = "color:black;font-size:larger" })" target="_blank">
+                                关注
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="~/images/icon/icon/love.ico" style="height:10px;width:10px;" />
+                            <a href="@Url.Action("fen", "Kongjian", new {userid1=@ViewBag.id, @style = "color:black;font-size:larger" })" target="_blank">
+                                粉丝
+                            </a>
+                        </div>
+                        <div class="col-md-4" style="color:black;font-size:larger">动态</div>
+                        <p>资料</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                </div>
+                说说
+                <hr />
+                <div class="panel-body">
+
+                    @foreach (var item in Model.UserAllShuo)
+                    {
+                        @item.ShuoshuoID
+                        @item.Shuoshuo_Content
+                    }
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                </div>
+                <p>文档</p>
+                <hr />
+                <div class="panel-body">
+                    @foreach (var item in Model.userupload)
+                    {
+                        @item.Text_Time
+                        @item.Textname
+                        <a href="@item.Text_path">下载</a>
+                    }
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                </div>
+                <p>视频</p>
+                <hr />
+                <div class="panel-body">
+                    @foreach (var item in Model.uservideo)
+                    {
+                        @item.Videoname
+                        @item.Video_Time
+                        <a href="@item.VideoPath">观看</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

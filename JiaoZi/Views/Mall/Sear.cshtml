@@ -1,0 +1,73 @@
+﻿@model  IEnumerable<JiaoZi.Models.Books>
+@{
+    Layout = "~/Views/Shared/Layoutmall.cshtml";
+}
+<style>
+    a{
+        color:black;
+    }
+    a:hover{
+        text-decoration:none;
+    }
+ 
+    .pic{
+        width:1005px;
+        height:600px;
+        /*margin:0 auto;*/
+        margin-left:121px;
+        margin-top:20px;
+        float:left;
+        border:1px solid #ccc;
+
+    }
+    .pic img{
+        width:200px;
+        height:200px;
+        margin-right:44px;
+    }
+   .small {
+        width: 200px;
+        height: 280px;
+        float: left;
+    }
+
+   .small .bookpic {
+            width: 200px;
+            height: 200px;
+        }
+
+    .small .bookdetail {
+        width: 120px;
+        margin: 0 auto;
+    }
+    /*.first{
+        width:50px;
+        height:30px;
+        border:1px solid #f00;
+        margin-left:310px;
+        line-height:30px;  
+        text-align:center;
+        background-color:red;
+    }*/
+</style>
+@*<div class="first">
+    <a href="@Url.Action("index","Mall")" style="color:white;">首页</a>
+</div>*@
+<div class="container" style="overflow:hidden">
+    <div class="pic">
+        @foreach (var item in Model.Take(10))
+        {
+            <div class="small">
+                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
+                    <div class="bookpic">
+                        <img src="~/@item.BookImage" />
+                    </div>
+                    <div class="bookdetail">
+                        <span>￥@item.Price</span>
+                        <p>@item.BookName</p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

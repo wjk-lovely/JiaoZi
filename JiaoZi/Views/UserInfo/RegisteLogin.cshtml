@@ -1,0 +1,118 @@
+﻿@model JiaoZi.Models.RegisteLogin
+
+@{
+    ViewBag.Title = "RegisteLogin";
+}
+<style type="text/css">
+    .box1 {
+        width: 410px;
+        height: 350px;
+        border: 1px solid #dddddd;
+        margin: 110px auto;
+    }
+
+    .tab-content p {
+        margin-top: 20px;
+    }
+
+    #GM {
+        width: 100px;
+        height: 40px;
+    }
+</style>
+<h2 style="text-align:center;color:palevioletred">教资服务网欢迎您</h2>
+
+<div class="box1" style="text-align:center">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">登录</a>
+        </li>
+        <li>
+            <a href="#re" data-toggle="tab">注册</a>
+        </li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+            @using (Ajax.BeginForm("RegisteLogin", "UserInfo", new AjaxOptions()
+            {
+                HttpMethod = "Post",
+                OnSuccess = "Success",
+               
+            }
+            ))
+            {
+                <p>
+                    ID:&nbsp;&nbsp;&nbsp;
+
+                    @Html.TextBoxFor(m => m.UserID) <br />
+                    @Html.ValidationMessageFor(m => m.UserID)
+                </p>
+                <p>
+                    密码:
+                    @Html.PasswordFor(m => m.PasswordL)<br />
+                    @Html.ValidationMessageFor(m => m.PasswordL)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.YZM)
+                    @Html.TextBoxFor(m => m.YZM)<br />
+                    <img id="GM" style="cursor: pointer;" src="~/UserInfo/GetImg" title="看不清，点击换一张" />
+                    <button type="button" id="GG">换一张</button>
+                </p>
+                <p>
+                    <input type="submit" value="登录" style="width:80%;background-color:deepskyblue" />
+                </p>
+                <a href="@Url.Action("FindPassword", "UserInfo")"><span>忘记密码</span></a>
+            }
+        </div>
+
+        <div class="tab-pane fade" id="re">
+            @using (Html.BeginForm("Registe", "UserInfo"))
+            {
+                <p>
+                    @Html.LabelFor(m => m.TrueName) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Html.TextBoxFor(m => m.TrueName)<br />
+                    @Html.ValidationMessageFor(m => m.TrueName)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.PasswordR) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Html.PasswordFor(m => m.PasswordR)<br />
+                    @Html.ValidationMessageFor(m => m.PasswordR)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    @Html.PasswordFor(m => m.ConfirmPassword)<br />
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Email)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Html.TextBoxFor(m => m.Email)<br />
+                    @Html.ValidationMessageFor(m => m.Email)
+                </p>
+                <p>
+                    <input type="submit" value="注册" />
+                </p>
+            }
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+@*<script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+<script type="text/javascript">
+    $(function () {
+        $("#GG").click(function () {
+            $("#GM").attr("src", "/UserInfo/GetImg?t=" + Math.random());
+        });
+    })
+    function Success(e) {
+        alert(e);
+        if (e == "登录成功") {
+            window.window.location.href = document.referrer;           
+        }
+    }
+ 
+</script>

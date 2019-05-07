@@ -1,0 +1,29 @@
+﻿@model IEnumerable<JiaoZi.Models.BookComment>
+
+<style> 
+   
+</style>
+    <span>全部评论</span>
+        <hr />
+        <ul>
+            @foreach (var i in Model)
+            {
+
+            <li>
+                <img src="~/@i.Users.HeadImage" class="img-circle" style="width:50px;" />
+                <span style="color:orangered">@i.Users.UserName</span>:
+                @i.Comment_Content
+                <span style="display:inline-block;margin-left:700px;font-size:12px;">@i.Comment_Time <input type="button" value="回复" /></span>
+                @*<div class="Com_box">
+                    <textarea class="Reply_text"></textarea>
+                    <button type="button" class="Re_tijiao">提交</button>
+                </div>*@
+                <div class="Reply">
+                    @*<textarea*@
+                    @Html.Action("Reply", "Mall", new { id = i.BookCommentID })
+                </div>
+            </li>
+
+                }
+        </ul>
+

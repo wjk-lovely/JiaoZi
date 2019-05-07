@@ -1,0 +1,147 @@
+﻿@{
+    Layout = "~/Views/Shared/Layoutnews.cshtml";
+}
+@model IEnumerable<JiaoZi.Models.News>
+@{
+    ViewBag.Title = "Newsdetails";
+}
+
+<link href="~/Content/iconfont.css" rel="stylesheet" />
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/iconfont1.css" rel="stylesheet" />
+<link href="~/Content/line.css" rel="stylesheet" />
+<h2>Newsdetails</h2>
+
+    @*<style>
+        .biaoti {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .img {
+            width: 194px;
+            height: 176px;
+        }
+
+        .content {
+            margin-left: 200px;
+            margin-right: 200px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+    </style>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+    <div class="container" id="con">
+        <div class="jumbotron" style="max-height:500px;height:176px;">
+            <div style="float:left;margin-top:-69px;margin-right:60px;">
+                <i class="iconfont">&#xe644;</i>
+            </div>
+            <div style="float:left">
+                <h1>教师资格证新闻</h1>
+            </div>
+            <div style="float:left;margin-top:21px">
+                <a href="@Url.Action("Index","News")"><span class="glyphicon glyphicon-home" style="font-size:36px;margin-left:60px;color:black">首页</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div style="margin-top:80px">
+                @foreach (var item in Model)
+            {
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="text-align:center">
+                                @Html.DisplayFor(ModelItem => item.Title)
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4"><img src="@item.Image" class="img" style="width:100%"></div>
+                                <div class="col-md-4"></div>
+                            </div>
+                            @Html.DisplayFor(ModelItem => item.News_Content)
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+
+    @*<div class="box">
+        <span class="line"></span>
+        <span class="txt">End</span>
+        <span class="line"></span>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <ul>
+                    <li>
+                        <b>关于新闻</b>
+                        <p style="margin-top:20px"><a href="#" style="color:black">新闻热点</a></p>
+                        <p><a href="#" style="color:black">新闻那些事</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul>
+                    <li>
+                        <b>服务内容</b>
+                        <p style="margin-top:20px"><a href="#" style="color:black">最新资讯</a></p>
+                        <p><a href="#" style="color:black">社会热点</a></p>
+                        <p><a href="#" style="color:black">考试预测</a></p>
+                        <p><a href="#" style="color:black">国家政策</a></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul>
+                    <li>
+                        <b>联系我们</b>
+                        <p style="margin-top:20px"><span>南昌市X3522工作室</span></p>
+                        <p>地址：南昌市紫阳大道99号江西师范大学</p>
+                        <p>电话：150-0793-2468</p>
+                        <p>
+                            邮箱：562437969@qq.com
+                        </p>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul>
+                    <li><b>关于教师资格证考试</b></li>
+                    <li style="margin-top:20px">
+                        <a class="iconfont1" style="color:black">&#xe602;</a>
+                        <a class="iconfont1" style="color:black">&#xe601;</a>
+                        <a class="iconfont1" style="color:black">&#xe600;</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>*@
+
+    <footer class="container-fluid text-center">
+        <a href="#con" title="To Top">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+
+    </footer>
+
+
+
+

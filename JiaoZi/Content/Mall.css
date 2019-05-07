@@ -1,0 +1,111 @@
+﻿
+.content {
+    width: 1400px;
+    margin: 0 auto;
+}
+
+.main .logo {
+    margin-left: 197px;
+}
+
+.main .sousuo {
+    border: 1px solid #cccccc;
+    box-shadow: 0 0 5px cornflowerblue;
+    border-radius: 22px;
+    width: 560px;
+    margin: -80px 400px;
+    position: relative;
+}
+
+.main .sinput {
+    width: 480px;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-right: 1px solid;
+}
+
+.sousuo .bt {
+    position: absolute;
+    width: 51px;
+    height: 30px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 0 15px 15px 0;
+}
+
+.main .lis {
+    width: 480px;
+    margin-top: 90px;
+    margin-left: 380px;
+}
+
+    .main .lis ul {
+        list-style: none;
+    }
+
+        .main .lis ul li {
+            float: left;
+            margin-left: 20px;
+            font-size: 12px;
+        }
+
+.main .Tx {
+    width: 200px;
+    height: 120px;
+    margin-top: -140px;
+    margin-left: 1050px;
+}
+
+.Tx img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-left: 60px;
+    margin-top: 5px;
+}
+
+.center {
+    width: 1000px;
+    height: 320px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+    .center .small {
+        width: 200px;
+        height: 280px;
+        float: left;
+    }
+
+       
+ul {
+    list-style: none;
+}
+
+.navb span {
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+    .navb span.current {
+        background-color: #ccc;
+    }
+
+.navbox {
+    border: 1px solid #cccccc;
+}
+
+    .navbox li {
+        width: 100%;
+        height: 270px;
+        display: none;
+    }
+
+        .navbox li.show {
+            display: block;
+        }

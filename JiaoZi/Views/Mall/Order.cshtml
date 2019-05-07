@@ -1,0 +1,72 @@
+﻿@model  IEnumerable<JiaoZi.Models.Orders>
+
+<style>
+    .details {
+        margin-left: -16px;
+        display:none;
+    }
+
+    .de th {
+       width:300px;
+    }
+</style>
+
+<div class="container" style="margin:40px auto">
+    @{ var num = 0;}
+    @foreach (var item in Model)
+    {
+        num++;
+        <div class="row"><span>@num</span>号订单:</div>
+        <div class="de">
+            <table class="table">
+                <tr>
+                    <th>
+                        收件人
+                    </th>
+                    <th>
+                        总价
+                    </th>
+                    <th>
+                        地址
+                    </th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.total
+                    </td>
+                    <td>
+                        @item.Address
+                    </td>
+                    <td>
+                        <button type="button" id="@item.OrderID">查看详情</button>
+                        
+                    </td>
+                </tr>
+            </table>
+            <div class="details">
+                @Html.Action("OrderDetails", "Mall", new { id = item.OrderID })
+            </div>
+        </div>
+    }
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    
+    $(function () {
+        var buttons = $(":button");
+        buttons.each(function () {
+            $(this).click(function () {
+                if ($(this).parents("table").eq(0).next().css("display") === "none") {
+                    $(this).parents("table").eq(0).next().show();
+                }
+                else
+                    $(this).parents("table").eq(0).next().hide();
+            })
+
+        })
+    })
+</script>

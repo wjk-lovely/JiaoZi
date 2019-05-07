@@ -1,0 +1,534 @@
+﻿@model JiaoZi.Models.Mallview
+@{
+    Layout = "~/Views/Shared/Layoutmall.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title> 
+    <link href="~/Content/bootstrap.4.1.0.min.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery.3.2.1.min.js"></script>
+        <script src="~/Scripts/popper.min.js"></script>
+        <script src="~/Scripts/bootstrap.4.1.0.min.js"></script>
+    <script>
+        //轮播图动画效果
+        function animate(obj, target) {
+            clearInterval(obj.timer);//先清除定时器
+            var speed = obj.offsetLeft < target ? 15 : -15;
+            obj.timer = setInterval(function () {
+                var result = target - obj.offsetLeft;
+                obj.style.left = obj.offsetLeft + speed + "px";
+                if (Math.abs(result) <= 15) {
+                    clearInterval(obj.timer);
+                    obj.style.left = target + "px";
+                }
+            }, 10)
+        }
+        window.onload = function () {
+            //获取元素
+            var box = document.getElementById("all");
+            var ul = document.getElementById("ul");
+            var ulis = ul.children;
+            ul.appendChild(ul.children[0].cloneNode(true));
+            var ol = document.createElement("ol");
+            box.appendChild(ol);
+            for (var i = 0; i < ulis.length - 1; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = i + 1;
+                ol.appendChild(li);
+            }
+            ol.children[0].className = "current";
+
+            var olis = ol.children;
+            for (var i = 0; i < olis.length; i++) {
+                olis[i].index = i;
+                olis[i].onmouseover = function () {
+                    for (var j = 0; j < olis.length; j++) {
+                        olis[j].className = "";
+                    }
+                    this.className = "current";
+                    animate(ul, -this.index * 800);
+                    square = key = this.index;
+                }
+            }
+
+
+            var timer = null;
+            var key = 0;
+            var square = 0;
+            timer = setInterval(autoplay, 3000);
+            function autoplay() {
+                key++;
+                if (key > ulis.length - 1) {
+                    ul.style.left = 0;
+                    key = 1;
+                }
+                animate(ul, -key * 800);
+                square++
+                if (square > olis.length - 1) {
+                    square = 0;
+                }
+                for (var i = 0; i < olis.length; i++) {
+                    olis[i].className = "";
+                }
+                olis[square].className = "current";
+            }
+            box.onmouseover = function () {
+                clearInterval(timer);
+            }
+            box.onmouseout = function () {
+                timer = setInterval(autoplay, 3000);
+            }
+
+
+            //span经过效果
+            var liss = document.getElementById("navb").getElementsByTagName("li");
+            var lis = document.getElementById("navbox").getElementsByTagName("li");
+            for (var i = 0; i < liss.length; i++) {
+                liss[i].index = i;
+                liss[i].onmouseover = function () {
+
+                    for (var j = 0; j < liss.length; j++) {
+                        liss[j].className = "";
+                        lis[j].className = "";
+                    }
+                    this.className = "current";
+                    lis[this.index].className = "show";
+                }
+            }
+
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-image: url('../../images/Css/bjt.jpg');
+            background-size: 100% 100%;
+        }
+
+        a {
+            color: black;
+        }
+
+            a:hover {
+                text-decoration: none;
+            }
+
+        .content {
+            width: 1400px;
+            margin: 0 auto;
+        }
+
+        .center {
+            width: 1005px;
+            height: 600px;
+            margin-left: 160px;
+        }
+
+            .center .small {
+                width: 200px;
+                height: 280px;
+                float: left;
+                margin-left: 20px;
+            }
+
+                .center .small .bookpic {
+                    width: 200px;
+                    height: 200px;
+                    margin-top: 10px;
+                }
+
+        .bookpic img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .center .small .bookdetail {
+            width: 120px;
+            margin: 0 auto;
+        }
+
+       ul {
+            list-style: none;
+        }
+
+        .navb {
+            margin-top: 20px;
+        }
+
+            .navb ul {
+                height: 253px;
+                width: 90px;
+                text-align: center;
+                line-height: 50px;
+            }
+
+            .navb li {
+                width: 90px;
+                height: 50px;
+                border: 1px solid #ccc;
+                background-color: darkgray;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+        .navbox {
+            border: 1px solid #cccccc;
+            height: 600px;
+            margin-top: -263px;
+            margin-left: 90px;
+            overflow: hidden;
+        }
+
+            .navbox li {
+                width: 100%;
+                height: 600px;
+                display: none;
+            }
+
+            .navbox a {
+                text-decoration: none;
+            }
+
+            .navbox span {
+                color: darkred;
+                font-size: 20px;
+            }
+
+            .navbox li.show {
+                display: block;
+            }
+
+        .hotsale {
+            width: 206px;
+            height: 400px;
+            border: 1px solid #ccc;
+            margin-top: 100px;
+            margin-left: 155px;
+        }
+
+            .hotsale .md {
+                width: 200px;
+                height: 130px;
+            }
+
+        .picture img {
+            width: 120px;
+            height: 100px;
+        }
+
+        .hotsale .details {
+            width: 80px;
+            height: 80px;
+            margin-top: -65px;
+            margin-left: 122px;
+        }
+
+        .lunbotu {
+            width: 100%;
+            height: 361px;
+            background-color: moccasin;
+            margin-top: -100px;
+        }
+
+        #all {
+            width: 800px;
+            height: 360px;
+            border: 1px solid #cccccc;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        .pic {
+            width: 800px;
+            height: 360px;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .pic li {
+                width: 800px;
+                height: 360px;
+                overflow: hidden;
+                float: left;
+            }
+
+            .pic ul {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 3200px;
+            }
+
+        #all ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            list-style: none;
+            text-align: center;
+        }
+
+            #all ol li {
+                float: left;
+                width: 20px;
+                height: 20px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+
+                #all ol li.current {
+                    background-color: gold;
+                }
+
+        .pic img {
+            width: 800px;
+            height: 360px;
+        }
+
+        .newbooks {
+            width: 474px;
+            height: 424px;
+            border: 1px solid #ccc;
+            padding: 10px 0 0 10px;
+            font-family: arial;
+            overflow: hidden;
+            margin-left: 400px;
+            margin-top: -444px;
+        }
+
+            .newbooks li {
+                float: left;
+                margin: 0 10px 10px 0;
+                width: 220px;
+                height: 200px;
+                overflow: hidden;
+                position: relative;
+            }
+
+                .newbooks li div, .newbooks li p {
+                    width: 178px;
+                    height: 25px;
+                    position: absolute;
+                    font-size: 14px;
+                    text-align: center;
+                    line-height: 25px;
+                    color: white;
+                    left: 20px;
+                    bottom: -36px;
+                    _bottom: -36px;
+                }
+
+                .newbooks li div {
+                    background-color: #000;
+                }
+
+                .newbooks li p {
+                    background-color: brown;
+                }
+    </style>
+</head>
+<body>
+    <div class="lunbotu">
+        <div class="lbt" id="all">
+            <div class="pic">
+                <ul id="ul">
+                    <li><img src="~/images/Css/lunbo1.jpg"></li>
+                    <li><img src="~/images/Css/lunbo2.jpg"></li>
+                    <li><img src="~/images/Css/lunbo3.jpg"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content" >
+        <div class="center" id="center">
+            <div class="navb" id="navb">
+                <ul>
+                    @foreach (var item in Model.Category.Take(1))
+                    {
+                        <li class="current">@item.CategoryName</li>
+                    }
+                    @foreach (var item in Model.Category.Skip(1).Take(4))
+                    {
+                        <li>@item.CategoryName</li>
+                    }
+                </ul>
+            </div>
+            <div class="navbox" id="navbox">
+                <ul>
+                    <li class="show">
+                        @foreach (var item in Model.CateBooks.Take(8))
+                        {
+
+                            <div class="small">
+                                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
+                                    <div class="bookpic">
+                                        <img src="~/@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </li>
+                    <li>
+                        @foreach (var item in Model.CateBooks1.Take(8))
+                        {
+
+                            <div class="small">
+                                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
+                                    <div class="bookpic">
+                                        <img src="~/@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        }
+                    </li>
+                    <li>
+                        @foreach (var item in Model.CateBooks2.Take(8))
+                        {
+
+                            <div class="small">
+                                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
+                                    <div class="bookpic">
+                                        <img src="~/@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        }
+                    </li>
+                    <li>
+                        @foreach (var item in Model.CateBooks3.Take(8))
+                        {
+
+                            <div class="small">
+                                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
+                                    <div class="bookpic">
+                                        <img src="~/@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        }
+                    </li>
+                    <li>
+                        @foreach (var item in Model.CateBooks4.Take(8))
+                        {
+
+                            <div class="small">
+                                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
+                                    <div class="bookpic">
+                                        <img src="~/@item.BookImage" />
+                                    </div>
+                                    <div class="bookdetail">
+                                        <span>￥@item.Price</span>
+                                        <p>@item.BookName</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top:-40px;">
+            @*热销榜*@
+            <span style="line-height: 45px;text-align: center; display:block;position:relative;top:101px;left:155px;width:100px;height:45px;border:1px solid #ff0000;background:red; font-size:20px;"><a href="#" style="color:white">热销榜</a></span>
+            <div class="hotsale">
+                @foreach (var item in Model.Hotsale)
+                {
+            <div class="md">
+                <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank">
+                    <div class="picture">
+                        <img src="~/@item.BookImage" />
+                    </div>
+                    <div class="details">
+                        <p>@item.BookName</p>
+                    </div>
+                </a>
+            </div>
+}
+            </div>
+            <span style="line-height: 45px;text-align: center; display:block;position:relative;top:-444px;left:400px;width:100px;height:45px;border:1px solid #ff0000;background:red;font-size:20px;"><a href="#" style="color:white">新品上架</a></span>
+            @*新品上架*@
+            <div class="newbooks">
+                <ul>
+                    @foreach (var item in Model.NewBooks)
+                    {
+                        <li>
+                            <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank"><img src="~/@item.BookImage" /></a>
+                            <p>@item.BookName</p>
+                        </li>
+                    }
+                </ul>
+            </div>
+            @*促销榜*@
+            <span style="line-height: 45px;text-align: center; display:block;position:relative;top:-469px;left:906px;width:100px;height:45px;border:1px solid #ff0000;background:red;font-size:20px;"><a href="#" style="color:white">促销榜</a></span>
+            <div class="onsale" style="width:280px;height:400px;margin-left:890px;margin-top:-469px;">
+                @*折叠框实现促销榜*@
+                <div class="container"> 
+                    <div id="accordion">
+                        <div class="card">
+                            @foreach (var item in Model.Onsale.Take(7))
+                            {      
+                                <div class="card-header" >
+                                    <a class="card-link" data-toggle="collapse" href="#@item.BookID">
+                                        @item.BookName
+                                    </a>
+                                </div>
+                                <div id="@item.BookID" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <a href="@Url.Action("BooksDetails", "Mall", new { id = item.BookID })" target="_blank"><img src="~/@item.BookImage" /></a>
+                                    </div>
+                                </div>                                
+                            }
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    //设置样式透明度 书页在鼠标经过的动画效果
+    $(function () {
+        var div = $(".netbooks"), speed = 388, $p = $(".newbooks p");
+        $p.before(div);
+        $(".newbooks div").fadeTo(0, 0.5);
+        $p.each(function (index, ele) {
+            var y = index * 25;
+            $(ele).css("background-position", "5px -" + y + "px");
+        });
+
+        $(".newbooks li").hover(function () {
+            $(this).children("div,p").stop().animate({ "bottom": 0 }, speed);
+        }, function () {
+            $(this).children("div,p").stop().animate({ "bottom": -36 }, speed);
+        });
+    });
+</script>

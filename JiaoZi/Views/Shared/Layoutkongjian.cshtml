@@ -1,0 +1,230 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Layoutkongjian</title>
+</head>
+<body style="background-color:rgb(238, 235, 235);">
+    <style>
+        #kongjianbody {
+            margin-top: 40px;
+        }
+        #Mydaohang1 {
+            background-color:black;
+            border-color:black;
+            height:66px;
+        }
+        #lll {
+            position:relative;left:220px; top:-50px;
+
+        }
+       .GuanZhu{
+           position:relative;
+           left:220px; 
+           top:-50px;
+       }
+    </style>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/Content/zui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/zui.min.js"></script>
+    <link href="~/Content/zui.uploader.min.css" rel="stylesheet" />
+    <script src="~/Scripts/zui.uploader.min.js"></script>
+    <div class="navbar navbar-inverse navbar-fixed-top" id="Mydaohang1">
+        <div class="container-fluid">
+            @*<div style="width:50px;height:50px;float:left;margin-left:30px">
+                <img src="@Session["User_image"]" style="width:45px;height:45px;" />
+            </div>*@
+            <div class="navbar-header" style="margin-left:240px;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("教资考试服务网", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("考试中心", "KSZX", "Home")</li>*@
+                    <li>@Html.ActionLink("教资资讯", "Index", "News")</li>
+                    <li>@Html.ActionLink("个人空间", "Index", "Kongjian")</li>
+                    <li>@Html.ActionLink("备考资源库", "Index", "Resouce")</li>
+                    <li>@Html.ActionLink("考试论坛", "Index", "Luntan")</li>
+                    <li>@Html.ActionLink("备考书店", "Index", "Mall")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="height:80px;width:100%;background-color:#f4511e">
+        <span>当前所在页</span>
+    </div>
+    <div class="container">
+        <div class="row" style="background-color:white">
+            <div class="col-md-8" style="padding-right:0px;">
+                @RenderBody()
+            </div>
+            <div class="col-md-4" style="height:inherit;padding-left:0px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                           导航
+                        </h3>
+                        <ul class="nav nav-tabs" id="tabNav"style="font-size:larger">
+                            <li>@Html.ActionLink("动态", "Index", "Kongjian")</li>
+                            <li>@Html.ActionLink("文件", "File", "Kongjian")</li>
+                            <li>@Html.ActionLink("视频", "video", "Kongjian")</li>
+                            <li>@Html.ActionLink("说说", "shuoshuo", "Kongjian")</li>
+                        </ul>
+                        <div style="height:150px">
+                            <img src="@Session["User_image"]" style="height:70px;width:70px;border:5px ridge white" />
+                       
+                        </div>
+                        <div class="row" style="height:100px;font-size:large;color:black">
+                            <div class="col-md-4">
+
+                                <img src="~/images/icon/icon/love.ico" style="height:10px;width:10px;" />
+                                <a href="@Url.Action("guanzhu", "Kongjian", new {userid1=Convert.ToInt32(Session["User_id"]), @style = "color:black;font-size:larger" })" target="_blank">
+                                    关注
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                            <img src="~/images/icon/icon/love.ico" style="height:10px;width:10px;" />
+                                <a href="@Url.Action("fen", "Kongjian", new {userid1= Convert.ToInt32(Session["User_id"]), @style = "color:black;font-size:larger" })" target="_blank">
+                                    粉丝
+                                </a>
+                           </div>
+                            <div class="col-md-4">动态</div>
+                        </div>
+                    </div>
+                    <div id="GGGG" class="panel-body">
+                         <span>用户推荐</span>
+                        <hr/>
+                        <p>
+                            01
+                            <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid = 8})" target="_blank">
+                                <img src="~/images/User_HeadImage/8.jpg" style="height:50px;width: 50px;margin-left: 10px;" />
+                            </a>
+                            <span>老胡</span>
+                            <span>
+                                @using (Html.BeginForm("UAttentionU", "Kongjian", new { user2id =8 }, FormMethod.Post))
+                                {
+                                    <input type="submit" value="关注" style=" position:relative;left:220px; top:-50px;" />
+                                }
+                            </span>
+                        </p>
+                        <p>
+                            02
+                            <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid =7})" target="_blank">
+                                <img src="~/images/User_HeadImage/7.jpg" style="height: 50px;width: 50px;margin-left: 10px;" />
+                            </a>
+                            
+                            <span>李易峰</span>
+                            <span>
+                                @using (Html.BeginForm("UAttentionU", "Kongjian", new { user2id =7 }, FormMethod.Post,new { @class="GuanZhu"}))
+                                {
+                                    <input type="submit" value="关注"  />
+                                }
+                            </span>
+                        </p>
+                        <p>
+                            03
+                            <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid =6})"  target="_blank">
+                                <img src="~/images/User_HeadImage/6.jpg" style="height: 50px;width: 50px;margin-left: 10px;" id="lll" />
+                            </a>
+                           
+                            <span>小白</span>
+                            <span>
+                                @using (Html.BeginForm("UAttentionU", "Kongjian", new { user2id =6 }, FormMethod.Post, new { @class = "GuanZhu" }))
+                                {
+                                    <input type="submit" value="关注"  />
+                                }
+                            </span>
+                        </p>
+                        <p>
+                            04 
+                            <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid =23})" target="_blank">
+                                <img src="~/images/User_HeadImage/12.jpg" style="height: 50px;width: 50px;margin-left: 10px;" />
+                            </a>
+                          
+                            <span>赵丽颖</span>
+                            <span>
+                                @using (Html.BeginForm("UAttentionU", "Kongjian", new { user2id = 23}, FormMethod.Post))
+                                {
+                                    <input type="submit" value="关注" />
+                                }
+                            </span>
+                        </p>
+                        <span>可能认识的人</span>
+                        <hr />
+                        <div>
+                            <p>
+                                01
+                                <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid =24})" target="_blank">
+                                    <img src="~/images/User_HeadImage/13.jpg" style="height: 50px;width: 50px;margin-left: 10px;" />
+                                </a>
+                                
+                                <span>林更新</span>
+                                <span>
+                                    @using (Html.BeginForm("UAttentionU", "Kongjian", new { user2id = 24 }, FormMethod.Post,new { @class = "GuanZhu" }))
+                                    {
+                                        <input type="submit" value="关注"/>
+                                    }
+                                </span>
+                            </p>
+                            <p>
+                                02
+                                <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid =14})" target="_blank">
+                                    <img src="~/images/User_HeadImage/14.jpg" style="height: 50px;width: 50px;margin-left: 10px;" />
+                                </a>
+                               
+                                <span>余淮</span>
+                                <span>
+                                    @using (Html.BeginForm("UAttentionU", "Kongjian", new { user2id =14}, FormMethod.Post, new { @class = "GuanZhu" }))
+                                    {
+                                        <input type="submit" value="关注"  />
+                                    }
+                                </span>
+                            </p>
+                            <p>
+                                03
+                                <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid =15})" target="_blank">
+                                    <img src="~/images/User_HeadImage/15.jpg" style="height: 50px;width: 50px;margin-left: 10px;" />
+                                </a>
+                              
+                                <span>耿耿</span>
+                                <span>
+                                    @using (Html.BeginForm("UAttentionU", "Kongjian", new { user2id =15}, FormMethod.Post, new { @class = "GuanZhu" }))
+                                    {
+                                        <input type="submit" value="关注"  />
+                                    }
+                                </span>
+                            </p>
+                            <p>
+                                04
+                                <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid =20})" target="_blank">
+                                    <img src="~/images/User_HeadImage/16.jpg" style="height: 50px;width: 50px;margin-left: 10px;" />
+                                </a>
+                                <span>赵又廷</span>
+                                <span>
+                                    @using (Html.BeginForm("UAttentionU", "Kongjian", new { user2id = 20}, FormMethod.Post, new { @class = "GuanZhu" }))
+                                    {
+                                        <input type="submit" value="关注"  />
+                                    }
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

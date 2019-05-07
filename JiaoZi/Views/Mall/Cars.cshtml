@@ -1,0 +1,219 @@
+﻿@model IEnumerable<JiaoZi.Models.Cars>
+
+
+<div class="container" style="margin:40px auto">
+
+    <table class="table">
+        <tr>
+            <th>
+                <input type="checkbox" id="all" />全选
+            </th>
+            <th style="padding-left:40px;">
+                图片
+            </th>
+            <th>
+                数量
+            </th>
+            <th>
+                单价
+            </th>
+            <th>
+                小计
+            </th>  
+            <th>编辑</th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            var sum = item.Books.Price * item.Count;
+            <tr>
+                <td>
+                    <input data-id="@item.CartID" type="checkbox" name="check" value="@sum" />
+                </td>
+                <td>
+                    <img src="~/@item.Books.BookImage" style="height:110px;" />
+                </td>
+                <td>
+                    <input type="number" data-CarID="@item.CartID" class="in"  min="0" max="@item.Books.Amount" value="@item.Count"  style="width:50px;"/>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Books.Price)
+                </td>
+                <td class="sum">
+                    @sum
+                </td>
+                <td>
+                    <button type="button" class="bianji">更改</button>
+                    <button type="button" class="delete">删除</button>
+                </td>
+            </tr>
+        }
+    </table>
+    <div style="width:300px;margin-left:900px;">
+        <span style="color:palevioletred">总价：</span><input type="text" id="total" readonly style="width:60px;">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">立即下单</button>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                请填写信息：
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <label for="Order_Name">收件人：</label>
+                            <input id="Order_Name" name="Order_Name" />
+                            <br />
+                            <label for="Order_Add">地&nbsp;&nbsp;&nbsp;址：</label>
+                            <input id="Order_Add" name="Order_Add" />
+                            <br />
+                            <label for="Order_Tel">电&nbsp;&nbsp;&nbsp;话：</label>
+                            <input id="Order_Tel" name="Order_Tel" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                关闭
+                            </button>
+                            <button type="button" id="Sub" class="btn btn-primary">
+                                提交
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(function () {
+        var total = $("#total");
+        var sum = 0;
+        var checks = $(":checkbox");
+        var al = $("#all");
+        var checked = $("input[name='check']");
+        al.click(function () {
+            if ($(this).is(":checked")) {
+                for (var i = 1; i < checks.length; i++) {
+                    if (!$(checks[i]).is(":checked")) {
+                        $(checks[i]).prop("checked", true);
+                        sum = parseFloat(sum) + parseFloat($(checks[i]).val());
+                        total.attr("value", sum);
+                    }
+                }
+            }
+            else {
+                for (var i = 1; i < checks.length; i++) {
+                    if ($(checks[i]).is(":checked")) {
+                        $(checks[i]).prop("checked", false);
+                        sum = parseFloat(sum) - parseFloat($(checks[i]).val());
+                        total.attr("value", sum);
+                    }
+                }
+            }
+        })
+        for (var i = 1; i < checks.length; i++) {
+            checks[i].onclick = function () {
+                if (this.checked) {
+                    sum = parseFloat(sum) + parseFloat(this.value);
+                    total.attr("value", sum);
+                }
+                else {
+                    sum = parseFloat(sum) - parseFloat(this.value);
+                    total.attr("value", sum);
+                }
+            }
+        };
+        var name = $("#Order_Name");
+        var add = $("#Order_Add");
+        var tel = $("#Order_Tel");
+
+        $("#Sub").on("click", function () {
+            //var checked = $("input[name='check']");
+            var check = [];
+            for (var i = 0; i < checked.length; i++) {
+                if (checked.eq(i).prop("checked")) {
+                    check.push(parseInt(checked.eq(i).attr("data-id"), 10));
+                }
+            }
+            if (check.length > 0) {
+                $.ajax({
+                    type: 'Post',
+                    dataType: 'json',
+                    url: "/Mall/Buy",
+                    data: {
+                        "a": check,
+                        "Name": name.val(),
+                        "Tel": tel.val(),
+                        "Add": add.val(),
+                        "Total": total.val(),
+                    },
+                    traditional: true,
+                    success: function (data) {
+                        alert(data.Mess);
+                        window.history.go(0);
+                    },
+                    error: function () {
+                        alert("订单失败");
+                    }
+                });
+            }
+        });
+
+        $(".bianji").each(function () {
+            $(this).click(function () {
+                var con = $(this).parents("tr").eq(0).find(".in");
+                var ID = $(this).parents("tr").eq(0).find(".in");
+                $.ajax({
+                    type: 'Post',
+                    dataType: 'json',
+                    url: '/Mall/UpdateCar',
+                    data: {
+                        "Num": con.val(),
+                        "CarID": ID.attr("data-CarID"),
+                    },
+                    traditional: true,
+                    success: function (data) {
+                        alert(data.Mess);
+                        window.history.go(0);
+                    },
+                    error: function () {
+                        alert("更新失败");
+                    }
+                })
+            })
+        })
+
+        $(".delete").each(function () {
+            $(this).click(function () {            
+                var ID = $(this).parents("tr").eq(0).find(".in").eq(0);
+                $.ajax({
+                    type: 'Post',
+                    dataType: 'json',
+                    url: '/Mall/DeleteCar',
+                    data: {                      
+                        "CarID": ID.attr("data-CarID"),
+                    },
+                    traditional: true,
+                    success: function (data) {
+                        alert(data.Mess);
+                        window.history.go(0);
+                    },
+                    error: function () {
+                        alert("删除失败");
+                    }
+                })
+            })
+        })
+
+        
+
+
+    })
+
+</script>

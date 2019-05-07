@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "首页";
+}
+<style>
+    	.jumbotron {
+			background-color: #f4511e;
+			color: #FFFFFF;
+			padding: 100px 600px;
+		}
+    #h11 {
+        font-size:50px;
+    }  
+</style>
+
+<div class="row" style="height:300px;width:100%;">
+
+    <div class="jumbotron text-center">
+        <h1 id="h11">教资考试服务网</h1>
+        <p >a service network</p>
+        <form class="form-inline">
+            <input type="email" class="form-control" size="50" placeholder="Email Address">
+            <button type="button" class="btn btn-danger">Subscribe</button>
+        </form>
+    </div>
+
+
+
+</div>
+
+<!--图标-->
+<div id="service" class="container-fluid text-center">
+    
+    <h2 style="padding-right:143px;"><img src="~/images/icon/icon/shou.ico" /> SERVICES</h2>
+    <h4>What we offer</h4>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <span class="glyphicon glyphicon-off logo-small"></span>
+            <h4>POWER</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+        </div>
+        <div class="col-sm-4">
+            <span class="glyphicon glyphicon-heart logo-small"></span>
+            <h4>LOVE</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+        </div>
+        <div class="col-sm-4">
+            <span class="glyphicon glyphicon-lock logo-small"></span>
+            <h4>JOB DONE</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-4">
+            <span class="glyphicon glyphicon-leaf logo-small"></span>
+            <h4>GREEN</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+        </div>
+        <div class="col-sm-4">
+            <span class="glyphicon glyphicon-certificate logo-small"></span>
+            <h4>CERTIFIED</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+        </div>
+        <div class="col-sm-4">
+            <span class="glyphicon glyphicon-wrench logo-small"></span>
+            <h4>HARD WORK</h4>
+            <p>Lorem ipsum dolor sit amet..</p>
+        </div>
+    </div>
+</div>
+
+
+<!--板块1 底部-->
+<div class="row" style="height:10%;background-color:black">
+    <div class="col-md-2">
+        <a href="#2news" style="color:aliceblue">最新资讯</a>
+    </div>
+    <div class="col-md-2">
+        <a href="#2ziyuan" style="color:aliceblue">最新资源</a>
+    </div>
+    <div class="col-md-2">
+        <a href="#3rexiao" style="color:aliceblue">最新书</a>
+    </div>
+    <div class="col-md-2" style="color:aliceblue">考生报名</div>
+    <div class="col-md-2" style="color:aliceblue">成绩查询</div>
+    <div class="col-md-2" style="color:aliceblue">酒店</div>
+</div>
+
+@*@Html.Action("homezixun")*@
+<!--板块3 新书上架 热销书籍-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span style="font-size:large">图书热销榜</span>
+    </div>
+    <div class="panel-body">
+        @Html.Action("Booksalestop3")
+    </div>
+</div>
+ <div class="panel panel-default">
+    <div class="panel-body">
+        <div style="background-color:antiquewhite;height:253px;">
+            @*@Html.Action("homeziyuan")*@
+            @Html.Action("homezixun")
+        </div>
+    </div>
+</div>  
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            新书上架
+        </h3>
+    </div>
+    <div class="panel-body">
+       @Html.Action("newissuebook")
+    </div>
+</div>
+ 
+<!--首页板块2 最新资讯  最新资源-->
+
+
+

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<JiaoZi.Models.TextResource>
+@{ 
+    Layout = null;
+}
+
+<div class="row">
+  
+        @foreach (var item in Model)
+        {  <div class="col-md-2">
+        <img src="~/images/icon/icon/文档.ico" />
+        @item.Text_Name
+        @item.Text_Time
+        <a href="@item.Text">下载</a>
+       </div>
+        }
+  
+</div>

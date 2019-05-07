@@ -1,0 +1,43 @@
+﻿@model JiaoZi.Models.Kongjianban
+@{  
+    Layout = null;
+}
+
+@foreach (var item in Model.ShuoCommentById)
+{
+     <div class="comment">
+         <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid = @item.Users.UserID })" target="_blank">
+             <img src="@item.Users.HeadImage" style="height: 50px;width: 50px;margin-left: 10px;" />
+         </a>
+       <div class="content">
+           <div class="pull-right text-muted">@item.Comment_Time</div>
+           <div><a href="###"><strong>@item.Users.UserName</strong></a></div>
+           <div class="text">@item.Comment_Content</div>
+           <div class="actions">
+           </div>
+       </div>
+    </div>
+    <div>
+        @using (Html.BeginForm("delcomment", "Kongjian", new { commentid = @item.ShuoshuoCommentID}, FormMethod.Post))
+        {
+            <div>
+                <input type="submit" value="删除" />
+            </div>
+        }
+    </div>
+    //添加评论
+    <div>
+        @using (Html.BeginForm("postshuoshuocommentreply", "Kongjian", new { commentid = @item.ShuoshuoCommentID }, FormMethod.Post))
+        {
+            @Html.TextArea("commentreplycontent", new { placeholder = "输入文字" })
+            <div>
+                <input type="submit" value="回复" />
+            </div>
+        }
+    </div>
+    //说说评论回复视图
+    <div>
+        @{Html.RenderAction("shuoshuocommentreply", "Kongjian", new { commentid = @item.ShuoshuoCommentID });}
+    </div>
+            }
+

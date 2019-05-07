@@ -1,0 +1,26 @@
+﻿@model IEnumerable<JiaoZi.Models.Attention>
+ @{
+     Layout = "~/Views/Shared/Layoutkongjian2.cshtml";
+     ViewBag.id = @Session["otheruserid"];
+     ViewBag.img = @Session["otheruserimg"];
+}
+<span style="font-size:larger">关注(5)</span>
+<div class="row container">
+    <hr />
+    @foreach (var item in Model)
+    {
+        //关注用户的用户信息
+        <div class="col-md-6" style="border:solid 1px red">
+            <a href="@Url.Action("otheruserkongjian", "Kongjian", new { otheruserid = @item.Users.UserID})" target="_blank">
+                <img src="@item.Users.HeadImage" style="height: 50px;width: 50px;margin-left: 10px;" />
+            </a>
+            <span>@item.Users.UserName</span><span> @item.Users.Sex</span>
+            <span>
+                @using (Html.BeginForm("quxiaoguanzhu", "Kongjian", new { guanzhuid = @item.AttentionID }, FormMethod.Post))
+                {
+                    <input type="submit" value="取关" />
+                }
+            </span>
+        </div>
+    }
+</div>

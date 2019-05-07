@@ -1,0 +1,467 @@
+﻿@model JiaoZi.Models.ResourceViewModel
+@{
+    //Layout = "~/Views/Shared/Layoutkongjian2.cshtml";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/zui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/zui.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <style>
+        #Mydaohang1 {
+            background-color: black;
+            border-color: black;
+            height: 75px;
+        }
+    </style>
+    <div class="navbar navbar-inverse navbar-fixed-top" id="Mydaohang1">
+        <div class="container-fluid">
+            <div style="width:50px;height:50px;float:left;margin-left:30px">
+                <img src="@Session["User_image"]" style="width:45px;height:45px;" />
+            </div>
+            <div class="navbar-header" style="margin-left:240px;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("教资考试服务网", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("考试中心", "KSZX", "Home")</li>*@
+                    <li>@Html.ActionLink("教资资讯", "Index", "News")</li>
+                    <li>@Html.ActionLink("个人空间", "Index", "Kongjian")</li>
+                    <li>@Html.ActionLink("备考资源库", "Index", "Resouce")</li>
+                    <li>@Html.ActionLink("考试论坛", "Index", "Luntan")</li>
+                    <li>@Html.ActionLink("备考书店", "Index", "Mall")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="height:89px;width:100%;background-color:indianred">
+        <span>当前所在页</span>
+    </div>
+    <div></div>
+    <div class="row">
+        <div class="col-md-2" style="height:800px;">
+            <nav class="menu" data-ride="menu" style="width: 200px">
+                <ul class="tree tree-menu" data-ride="tree">
+                    <li><a href="#"><i class="icon icon-th"></i>首页</a></li>
+                    <li>
+                        <a href="#"><i class="icon icon-time"></i>更新时间</a>
+                        <ul>
+                            <li><a href="#">今天</a></li>
+                            <li><a href="#">明天</a></li>
+                            <li><a href="#">昨天</a></li>
+                            <li><a href="#">本周</a></li>
+                        </ul>
+                    </li>
+                    <li>
+
+                        <i class="icon icon-list-ul"></i>@Html.ActionLink("全部", "allresource", "Resouce")
+                    </li>
+                    <li>
+                        <a href="#">幼儿</a>
+                        <ul>
+                            <li>
+                                <a href="#youershipin" data-toggle="tab">
+                                    幼儿视频
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#youerwendang" data-toggle="tab">
+                                    幼儿文档
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">小学</a>
+                        <ul>
+                            <li>
+                                <a href="#xiaoxueshipin" data-toggle="tab">
+                                    小学视频
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#xiaoxuewendang" data-toggle="tab">
+                                    小学文档
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">初中</a>
+                        <ul>
+                            <li>
+                                <a href="#chuzhongshipin" data-toggle="tab">
+                                    初中视频
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#chuzhongwendang" data-toggle="tab">
+                                    初中文档
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">高中</a>
+                        <ul>
+                            <li>
+                                <a href="#gaozhongshipin" data-toggle="tab">
+                                    高中视频
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#gaozhongwendang" data-toggle="tab">
+                                    高中文档
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <div class="panel panel-primary" style="width:200px;height:40%;border:1px solid dimgrey">
+                <div class="panel-heading" style="background-color:dimgrey">联系我</div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="inputemail">电子邮箱</label>
+                            <div class="col-sm-8">
+                                <input id="inputemail" type="email" class="form-control" placeholder="email" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label" for="inputname">姓名</label>
+                            <div class="col-sm-8">
+                                <input id="inputname" type="email" class="form-control" placeholder="name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="submit" class="btn btn-default pull-right">
+                                    发送
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="myTabContent" class="tab-content col-md-10" style="height:650px;overflow-y:scroll">
+            <hr>
+            <div>
+                <span>你当前的位置</span>
+                <b>></b>
+                <a href="/Home/Index">教资考试服务网</a>
+                <b>></b>
+                <a href="#">备考资源库</a>
+                <b>></b>
+                <a class="active-tab"><span>全部</span></a>
+                @using (Html.BeginForm("searchresouce", "Resouce"))
+                {
+                    @Html.TextArea("searchString")
+                    <div>
+                        <input type="submit" value="搜索" />
+                    </div>
+                }
+            </div>
+            @*<p class="active-tab"><strong>你当前的位置</strong>：<span></span></p>*@
+            <hr>
+            <div class="tab-pane fade in active" id="all">
+                <table class="table table-bordered  table-striped ">
+                    <tbody id="3tbody">
+                        <tr>
+                            <td>名称</td>
+                            <td>时间</td>
+                            <td>类别</td>
+                            <td></td>
+                        </tr>
+                        @foreach (var item in Model.alltextresource)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Text_Name
+                                </td>
+                                <td>
+                                    @item.Text_Time
+                                </td>
+                                <td>文档</td>
+                                <td>
+                                    <a href="@item.Text">下载</a>
+                                </td>
+                            </tr>
+                        }
+                        @foreach (var item in Model.allvideoresource)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Video_Name
+                                </td>
+                                <td>
+                                    @item.Video_Time
+                                </td>
+                                <td>视频</td>
+                                <td>
+                                    <video controls="controls" style="height:50px;width:50px;">
+                                        <source src="@item.Video" />
+                                    </video>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <hr />
+
+                @*@Html.Action("allresource")*@
+            </div>
+            <div class="tab-pane fade" id="youershipin">
+                <div class="cards cards-condensed">
+                    @foreach (var item in Model.youervideoresource)
+                    {
+                        <div class="col-md-4 col-sm-6 col-lg-3" style="height:300px;">
+                            <a class="card" href="###">
+                                <div>
+                                    <video controls="controls" style="width:100%;">
+                                        <source src="@Html.DisplayFor(modelItem=>item.Video)" />
+                                    </video>
+                                </div>
+                                <div class="caption">@item.Video_Name</div>
+                                @*<div class="card-heading"><strong>@item.downloadcount</strong></div>*@
+                                <div class="card-content text-muted">@item.Video_Time</div>
+                            </a>
+                            <a href="@item.Video"></a>
+                        </div>
+                    }
+                </div>
+                <p>幼儿视频</p>
+            </div>
+            <div class="tab-pane fade" id="youerwendang">
+                <table class="table table-bordered  table-striped ">
+                    <tbody id="3tbody">
+                        <tr>
+                            <td>名称</td>
+                            <td>时间</td>
+                            <td>类别</td>
+                            <td></td>
+                        </tr>
+                        @foreach (var item in Model.youertextresource)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Text_Name
+                                </td>
+                                <td>
+                                    @item.Text_Time
+                                </td>
+                                <td>文档</td>
+                                <td>
+                                    <a href="@item.Text">下载</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <p>幼儿文档</p>
+            </div>
+            <div class="tab-pane fade" id="xiaoxueshipin">
+                <div class="cards cards-condensed">
+                    @foreach (var item in Model.xiaoxuevideoresource)
+                    {
+                        <div class="col-md-4 col-sm-6 col-lg-3" style="height:300px;">
+                            <a class="card" href="###">
+                                <div>
+                                    <video controls="controls" style="width:100%;">
+                                        <source src="@Html.DisplayFor(modelItem=>item.Video)" />
+                                    </video>
+                                </div>
+                                <div class="caption">@item.Video_Name</div>
+                                @*<div class="card-heading"><strong>@item.downloadcount</strong></div>*@
+                                <div class="card-content text-muted">@item.Video_Time</div>
+                            </a>
+                            <a href="@item.Video"></a>
+                        </div>
+                    }
+                </div>
+                <p>
+                    小学视频
+                </p>
+            </div>
+            <div class="tab-pane fade" id="xiaoxuewendang">
+                <table class="table table-bordered  table-striped ">
+                    <tbody id="3tbody">
+                        <tr>
+                            <td>名称</td>
+                            <td>时间</td>
+                            <td>类别</td>
+                            <td></td>
+                        </tr>
+                        @foreach (var item in Model.xiaoxuetextresource)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Text_Name
+                                </td>
+                                <td>
+                                    @item.Text_Time
+                                </td>
+                                <td>文档</td>
+                                <td>
+                                    <a href="@item.Text">下载</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <p>
+                    小学文档
+                </p>
+            </div>
+            <div class="tab-pane fade" id="chuzhongshipin">
+                <div class="cards cards-condensed">
+                    @foreach (var item in Model.chuzhongvideoresource)
+                    {
+                        <div class="col-md-4 col-sm-6 col-lg-3" style="height:300px;">
+                            <a class="card" href="###">
+                                <div>
+                                    <video controls="controls" style="width:100%;">
+                                        <source src="@Html.DisplayFor(modelItem=>item.Video)" />
+                                    </video>
+                                </div>
+                                <div class="caption">@item.Video_Name</div>
+                                @*<div class="card-heading"><strong>@item.downloadcount</strong></div>*@
+                                <div class="card-content text-muted">@item.Video_Time</div>
+                            </a>
+                            <a href="@item.Video"></a>
+                        </div>
+                    }
+                </div>
+                <p>
+                    初中视频
+                </p>
+            </div>
+            <div class="tab-pane fade" id="chuzhongwendang">
+                <table class="table table-bordered  table-striped ">
+                    <tbody id="3tbody">
+                        <tr>
+                            <td>名称</td>
+                            <td>时间</td>
+                            <td>类别</td>
+                            <td></td>
+                        </tr>
+                        @foreach (var item in Model.chuzhongtextresource)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Text_Name
+                                </td>
+                                <td>
+                                    @item.Text_Time
+                                </td>
+                                <td>文档</td>
+                                <td>
+                                    <a href="@item.Text">下载</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <p>
+                    初中文档
+                </p>
+            </div>
+            <div class="tab-pane fade" id="gaozhongshipin">
+                <div class="cards cards-condensed">
+                    @foreach (var item in Model.gaozhongvideoresource)
+                    {
+                        <div class="col-md-4 col-sm-6 col-lg-3" style="height:300px;">
+                            <a class="card" href="###">
+                                <div>
+                                    <video controls="controls" style="width:100%;">
+                                        <source src="@Html.DisplayFor(modelItem=>item.Video)" />
+                                    </video>
+                                </div>
+                                <div class="caption">@item.Video_Name</div>
+                                @*<div class="card-heading"><strong>@item.downloadcount</strong></div>*@
+                                <div class="card-content text-muted">@item.Video_Time</div>
+                            </a>
+                            <a href="@item.Video"></a>
+                        </div>
+                    }
+                </div>
+                <p>
+                    高中视频
+                </p>
+            </div>
+            <div class="tab-pane fade" id="gaozhongwendang">
+                <table class="table table-bordered  table-striped ">
+                    <tbody id="3tbody">
+                        <tr>
+                            <td>名称</td>
+                            <td>时间</td>
+                            <td>类别</td>
+                            <td></td>
+                        </tr>
+                        @foreach (var item in Model.gaozhongtextresource)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Text_Name
+                                </td>
+                                <td>
+                                    @item.Text_Time
+                                </td>
+                                <td>文档</td>
+                                <td>
+                                    <a href="@item.Text">下载</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <p>
+                    高中文档
+                </p>
+            </div>
+
+        </div>
+        <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">教资考试服务网</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <script>
+    $(function(){
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            // 获取已激活的标签页的名称
+            var activeTab = $(e.target).text();
+            // 获取前一个激活的标签页的名称
+            var previousTab = $(e.relatedTarget).text();
+            $(".active-tab span").html(activeTab);
+            $(".previous-tab span").html(previousTab);
+        });
+    });
+    </script>
+</body>
+</html>

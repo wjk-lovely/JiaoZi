@@ -1,0 +1,44 @@
+﻿@model IEnumerable<JiaoZi.Models.OrderDetails>
+
+<div class="container" style="margin:40px auto">
+    
+    <table class="table">
+        <tr>
+            <th style="padding-left:40px;">
+                图片
+            </th>
+            <th>
+                数量
+            </th>
+            <th>
+                单价
+            </th>
+            <th>
+                小计
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            var sum = item.Books.Price * item.Count;
+            <tr>
+                <td>
+                    <img src="~/@item.Books.BookImage" style="height:110px;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Books.Price)
+                </td>
+                <td class="sum">
+                    @sum
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </table>
+</div> 

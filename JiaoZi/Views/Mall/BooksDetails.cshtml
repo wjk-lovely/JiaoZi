@@ -1,0 +1,236 @@
+﻿@model JiaoZi.Models.Books
+@{
+    Layout = "~/Views/Shared/Layoutmall.cshtml";
+
+}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        list-style:none;
+    }
+    .center {
+        width: 1005px;
+        height: 600px;
+        margin-left: 360px;
+        margin-top: 20px;
+    }
+
+    .pic img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .details {
+        width: 300px;
+        height: 300px;
+        margin-left: 330px;
+        margin-top: -300px;
+
+    }
+    .comment {
+        width: 700px;
+        height: 60px;
+    }
+    .CommentReply{
+        width:900px;
+        margin:0 auto;
+    }
+    .CommentReply li{
+        margin-bottom:30px;
+    }
+    .pinglun {
+        margin-left: 434px;
+        margin-bottom: 40px;
+    }
+    .textA {
+        resize: none;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        height: 68px;
+        width: 798px;
+        display: block;
+        border: 1px solid #c03f3c;
+    }
+    
+</style>
+
+
+<div class="center" id="center">
+    <div class="pic">
+        <img src="~/@Model.BookImage" />
+        <div class="mask"></div>
+    </div>
+
+    <div class="details">
+        @using (Html.BeginForm("Cars", "Mall"))
+        {
+        <h3>@Model.BookName</h3>
+        <div style="width:100%;height:40px;background-color:lavenderblush;">
+            <span style="color:darkgoldenrod;font-size:18px;height:40px;line-height:40px;display:inline-block;" >价格：</span>
+            <span style="font-size:24px; color:red">￥@Model.Price</span>
+            @Html.Hidden("Price", Model.Price);
+        </div>
+        <h4 style="color:dimgray">江浙沪顺丰包邮</h4>
+        <div style="height:40px;width:100%;margin-top:20px;">
+            <span>数量：</span>
+            @Html.Hidden("BookID", Model.BookID);
+            <input type="number" min="1" max="@Model.Amount" value="1" style="width:80px;" name="number" />         
+            <div style="margin-top:10px;">
+                <span>库存：</span>
+                <span id="kucun">@Model.Amount</span>
+                <div style="margin-top:10px;">                  
+                    <button style="background-color:red; color:white;" class="btn btn-default" id="jrgwc" type="submit">加入购物车</button>
+                    @*<button style="background-color:red; color:white;" class="btn btn-default" id="buy">直接购买</button>*@
+                    <button type="button" style="background-color:red; color:white;" class="btn btn-default" data-toggle="modal" data-target="#myModal1" >直接购买</button>
+                    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel1">
+                                        请填写信息：
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="Ord_Name">收件人：</label>
+                                    <input id="Ord_Name" name="Order_Name" />
+                                    <br />
+                                    <label for="Ord_Add">地&nbsp;&nbsp;&nbsp;址：</label>
+                                    <input id="Ord_Add" name="Order_Add" />
+                                    <br />
+                                    <label for="Ord_Tel">电&nbsp;&nbsp;&nbsp;话：</label>
+                                    <input id="Ord_Tel" name="Order_Tel" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        关闭
+                                    </button>
+                                    <button type="button" id="Buy" class="btn btn-primary">
+                                        提交
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+<div class="pinglun"> 
+        <textarea id="cc" name="Comment_Content" class="textA"></textarea>
+        @Html.Hidden("Comment_BookID", Model.BookID)
+        <span><button id="tijiao">提交</button></span>
+</div>
+<div class="CommentReply" id="CommentReply">
+    @Html.Action("Comment","Mall")
+    <div class="Reply">
+        
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    function complete() {
+        window.location.reload();
+    }
+    $(function () {
+        var name = $("#Ord_Name");
+        var add = $("#Ord_Add");
+        var tel = $("#Ord_Tel");
+        var total = $("#Price");
+        var numb = $("input[name='number']");
+        $("#Buy").on("click", function () {
+            var BookID = $("#BookID").val();
+            $.ajax({
+                type: 'Post',
+                dataType: 'json',
+                url: "/Mall/DirectBuy",
+                data: {
+                    "BoID": BookID,
+                    "Name": name.val(),
+                    "Tel": tel.val(),
+                    "Add": add.val(),
+                    "Total": total.val(),
+                    "Num": numb.val(),
+                },
+                traditional: true,
+                success: function (data) {
+                    alert(data.Mess);
+                    window.history.go(0);
+                },
+                error: function () {
+                    alert("购物失败");
+                }
+            });
+        });
+        var text = $("#cc");
+        var bookid = $("#BookID");
+        $("#tijiao").on("click", function () {
+            $.ajax({
+                type: 'Post',
+                url: "/Mall/Comment",
+                data: {
+                    "CommentBookID": bookid.val(),
+                    "Comment_Content": text.val(),
+                },
+                success: function (data) {
+                    $("#CommentReply").html(data);
+                },
+                error: function () {
+                    alert("评论失败");
+                }
+
+            })
+        });
+
+
+        var Re_tishis = $(".Re_tishi");
+        for (var i = 0; i < Re_tishis.length; i++) {
+            $(Re_tishis[i]).click(function () {
+                if ($(this).parent("span").eq(0).next(".Repl_box").css("display") === "none") {
+                    $(this).parent("span").eq(0).next(".Repl_box").eq(0).show()
+                }
+                else
+                    $(this).parent("span").eq(0).next(".Repl_box").hide()
+            });
+        }
+
+        $(".Re_tijiao").each(function () {
+            $(this).click(function () {
+                var ReID = $(this).parents("dl").eq(0).find("a").eq(0).attr("data-id");
+                var BookID = $(this).parents("dl").eq(0).find("a").eq(0).attr("data-Bookid");
+                var Rep_Content = $(this).prev();
+                $.ajax({
+                    type: 'Post',
+                    dataType: 'json',
+                    url: "/Mall/ReplyBox",
+                    traditional: true,
+                    data: {
+                        "id": BookID,
+                        "ReID": ReID,
+                        "Re_Content": Rep_Content.val(),
+                    },
+                    success: function (data) {
+                        //$(this).parents(".Reply").eq(0).html(data);
+                        alert(data.Mess);
+                        window.location.reload();
+                    },
+                    error: function () {
+                        alert("回复失败");
+                    }
+
+                })
+            })
+        })
+
+    })
+   
+
+</script>

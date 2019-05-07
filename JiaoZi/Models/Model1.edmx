@@ -1,0 +1,2347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="jiaoziModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Advice">
+          <Key>
+            <PropertyRef Name="AdviceID" />
+          </Key>
+          <Property Name="AdviceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Advice_Content" Type="varchar(max)" />
+          <Property Name="Advice_Time" Type="datetime" />
+          <Property Name="AdviceFlag" Type="bit" />
+        </EntityType>
+        <EntityType Name="Attention">
+          <Key>
+            <PropertyRef Name="AttentionID" />
+          </Key>
+          <Property Name="AttentionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Attention_UserID" Type="int" Nullable="false" />
+          <Property Name="Condition" Type="bit" Nullable="false" />
+          <Property Name="Attention_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BookComment">
+          <Key>
+            <PropertyRef Name="BookCommentID" />
+          </Key>
+          <Property Name="BookCommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="BookID" Type="int" Nullable="false" />
+          <Property Name="Comment_Content" Type="varchar(max)" />
+          <Property Name="Comment_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BookRelpy">
+          <Key>
+            <PropertyRef Name="BookReplyID" />
+          </Key>
+          <Property Name="BookReplyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookCommentID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Reply_Time" Type="datetime" />
+          <Property Name="Reply_Content" Type="varchar(max)" />
+          <Property Name="Ruser_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookImage" Type="varchar(max)" />
+          <Property Name="BookName" Type="varchar" MaxLength="100" />
+          <Property Name="BookAuthor" Type="varchar" MaxLength="50" />
+          <Property Name="IssueTime" Type="datetime" />
+          <Property Name="Publisher" Type="varchar" MaxLength="500" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Category" Type="varchar" MaxLength="100" />
+          <Property Name="CategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="flag" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Name="NewsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="200" />
+          <Property Name="News_Content" Type="varchar(max)" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="News_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailsID" />
+          </Key>
+          <Property Name="OrderDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookID" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Tel" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="total" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RemarkComments">
+          <Key>
+            <PropertyRef Name="RemarkCommentID" />
+          </Key>
+          <Property Name="RemarkCommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment_Time" Type="datetime" />
+          <Property Name="Comment_Content" Type="varchar(max)" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RemarkID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RemarkReply">
+          <Key>
+            <PropertyRef Name="RemarkReplyID" />
+          </Key>
+          <Property Name="RemarkReplyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RemarkCommentID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Reply_Content" Type="varchar(max)" />
+          <Property Name="Reply_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Remarks">
+          <Key>
+            <PropertyRef Name="RemarkID" />
+          </Key>
+          <Property Name="RemarkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="RemarkContent" Type="varchar(max)" />
+          <Property Name="RemarkFlag" Type="int" />
+          <Property Name="Remark_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shuoshuo">
+          <Key>
+            <PropertyRef Name="ShuoshuoID" />
+          </Key>
+          <Property Name="ShuoshuoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Shuoshuo_Content" Type="varchar(max)" />
+          <Property Name="Shuoshuo_Time" Type="datetime" />
+          <Property Name="Thumb_Num" Type="int" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShuoshuoComment">
+          <Key>
+            <PropertyRef Name="ShuoshuoCommentID" />
+          </Key>
+          <Property Name="ShuoshuoCommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comment_Time" Type="datetime" />
+          <Property Name="Comment_Content" Type="varchar(max)" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ShuoshuoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShuoshuoComment_Reply">
+          <Key>
+            <PropertyRef Name="ShuoshuoComment_ReplyID" />
+          </Key>
+          <Property Name="ShuoshuoComment_ReplyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reply_Content" Type="varchar(max)" Nullable="false" />
+          <Property Name="Reply_Time" Type="datetime" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="ShuoshuoCommentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Text">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text_path" Type="varchar(max)" />
+          <Property Name="Text_Time" Type="datetime" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Textname" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TextResource">
+          <Key>
+            <PropertyRef Name="TextReourceID" />
+          </Key>
+          <Property Name="TextReourceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PastexampaperOrNot" Type="bit" />
+          <Property Name="Text_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="Text_Time" Type="datetime" />
+          <Property Name="Stage" Type="varchar" MaxLength="50" />
+          <Property Name="Subject" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="HeadImage" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="TrueName" Type="varchar" MaxLength="50" />
+          <Property Name="Sex" Type="char" MaxLength="2" />
+          <Property Name="Birth" Type="datetime" />
+          <Property Name="Email" Type="varchar(max)" Nullable="false" />
+          <Property Name="Tel" Type="char" MaxLength="11" />
+          <Property Name="UserFlag" Type="int" Nullable="false" />
+          <Property Name="SpeakOrNot" Type="bit" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="VideoID" />
+          </Key>
+          <Property Name="VideoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VideoPath" Type="varchar(max)" />
+          <Property Name="downloadcount" Type="int" />
+          <Property Name="Video_Time" Type="datetime" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Videoname" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="VideoResource">
+          <Key>
+            <PropertyRef Name="VideoResourceID" />
+          </Key>
+          <Property Name="VideoResourceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Video_Name" Type="varchar" MaxLength="200" />
+          <Property Name="Video" Type="varchar(max)" />
+          <Property Name="Video_Time" Type="datetime" />
+          <Property Name="Stage" Type="varchar" MaxLength="100" />
+          <Property Name="Subject" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“jiaozi.dbo.Remark_User_Comments_Reply”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Remark_User_Comments_Reply">
+          <Key>
+            <PropertyRef Name="Remark_time" />
+            <PropertyRef Name="RemarkID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Remark_time" Type="datetime" Nullable="false" />
+          <Property Name="RemarkID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="pinglunshu" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“jiaozi.dbo.salestop3”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="salestop3">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookImage" Type="varchar(max)" />
+          <Property Name="BookName" Type="varchar" MaxLength="100" />
+          <Property Name="BookAuthor" Type="varchar" MaxLength="50" />
+          <Property Name="IssueTime" Type="datetime" />
+          <Property Name="Publisher" Type="varchar" MaxLength="500" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Category" Type="varchar" MaxLength="100" />
+          <Property Name="CategoryId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Attention__Atten__398D8EEE">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Attention">
+              <PropertyRef Name="Attention_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attention__Atten__6B24EA82">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Attention">
+              <PropertyRef Name="Attention_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attention__UserI__3A81B327">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Attention">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attention__UserI__6C190EBB">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Attention">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookComme__BookI__3B75D760">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="BookComment" Type="Self.BookComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookComment">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookComme__UserI__3C69FB99">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BookComment" Type="Self.BookComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookComment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__CategoryI__3D5E1FD2">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__CategoryI__6EF57B66">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__BookI__3E52440B">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__70DDC3D8">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__UserID__403A8C7D">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkCom__Remar__412EB0B6">
+          <End Role="Remarks" Type="Self.Remarks" Multiplicity="1" />
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Remarks">
+              <PropertyRef Name="RemarkID" />
+            </Principal>
+            <Dependent Role="RemarkComments">
+              <PropertyRef Name="RemarkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkCom__Remar__72C60C4A">
+          <End Role="Remarks" Type="Self.Remarks" Multiplicity="1" />
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Remarks">
+              <PropertyRef Name="RemarkID" />
+            </Principal>
+            <Dependent Role="RemarkComments">
+              <PropertyRef Name="RemarkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkCom__UserI__4222D4EF">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RemarkComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkCom__UserI__73BA3083">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RemarkComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkRep__Remar__4316F928">
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="1" />
+          <End Role="RemarkReply" Type="Self.RemarkReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RemarkComments">
+              <PropertyRef Name="RemarkCommentID" />
+            </Principal>
+            <Dependent Role="RemarkReply">
+              <PropertyRef Name="RemarkCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkRep__Remar__74AE54BC">
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="1" />
+          <End Role="RemarkReply" Type="Self.RemarkReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RemarkComments">
+              <PropertyRef Name="RemarkCommentID" />
+            </Principal>
+            <Dependent Role="RemarkReply">
+              <PropertyRef Name="RemarkCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkRep__UserI__440B1D61">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RemarkReply" Type="Self.RemarkReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RemarkReply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkRep__UserI__75A278F5">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RemarkReply" Type="Self.RemarkReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RemarkReply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Remarks__UserID__44FF419A">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Remarks" Type="Self.Remarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Remarks">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Remarks__UserID__76969D2E">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Remarks" Type="Self.Remarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Remarks">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shuoshuo__UserID__45F365D3">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Shuoshuo" Type="Self.Shuoshuo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Shuoshuo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shuoshuo__UserID__778AC167">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Shuoshuo" Type="Self.Shuoshuo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Shuoshuo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__Shuos__46E78A0C">
+          <End Role="Shuoshuo" Type="Self.Shuoshuo" Multiplicity="1" />
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shuoshuo">
+              <PropertyRef Name="ShuoshuoID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment">
+              <PropertyRef Name="ShuoshuoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__Shuos__48CFD27E">
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="1" />
+          <End Role="ShuoshuoComment_Reply" Type="Self.ShuoshuoComment_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShuoshuoComment">
+              <PropertyRef Name="ShuoshuoCommentID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment_Reply">
+              <PropertyRef Name="ShuoshuoCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__Shuos__787EE5A0">
+          <End Role="Shuoshuo" Type="Self.Shuoshuo" Multiplicity="1" />
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shuoshuo">
+              <PropertyRef Name="ShuoshuoID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment">
+              <PropertyRef Name="ShuoshuoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__Shuos__7A672E12">
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="1" />
+          <End Role="ShuoshuoComment_Reply" Type="Self.ShuoshuoComment_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShuoshuoComment">
+              <PropertyRef Name="ShuoshuoCommentID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment_Reply">
+              <PropertyRef Name="ShuoshuoCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__UserI__47DBAE45">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__UserI__49C3F6B7">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShuoshuoComment_Reply" Type="Self.ShuoshuoComment_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment_Reply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__UserI__797309D9">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__UserI__7B5B524B">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShuoshuoComment_Reply" Type="Self.ShuoshuoComment_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment_Reply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Text__UserID__4AB81AF0">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Text" Type="Self.Text" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Text">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Text__UserID__7C4F7684">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Text" Type="Self.Text" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Text">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Video__UserID__4BAC3F29">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Video__UserID__7D439ABD">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookRelpy_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BookRelpy" Type="Self.BookRelpy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookRelpy">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookRelpy_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BookRelpy" Type="Self.BookRelpy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookRelpy">
+              <PropertyRef Name="Ruser_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Books">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Car_buy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserPhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="jiaoziModelStoreContainer">
+          <EntitySet Name="Advice" EntityType="Self.Advice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attention" EntityType="Self.Attention" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookComment" EntityType="Self.BookComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookRelpy" EntityType="Self.BookRelpy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RemarkComments" EntityType="Self.RemarkComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RemarkReply" EntityType="Self.RemarkReply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Remarks" EntityType="Self.Remarks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shuoshuo" EntityType="Self.Shuoshuo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShuoshuoComment" EntityType="Self.ShuoshuoComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShuoshuoComment_Reply" EntityType="Self.ShuoshuoComment_Reply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Text" EntityType="Self.Text" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TextResource" EntityType="Self.TextResource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoResource" EntityType="Self.VideoResource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Remark_User_Comments_Reply" EntityType="Self.Remark_User_Comments_Reply" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Remark_User_Comments_Reply].[Title] AS [Title], 
+    [Remark_User_Comments_Reply].[Remark_time] AS [Remark_time], 
+    [Remark_User_Comments_Reply].[RemarkID] AS [RemarkID], 
+    [Remark_User_Comments_Reply].[UserName] AS [UserName], 
+    [Remark_User_Comments_Reply].[UserID] AS [UserID], 
+    [Remark_User_Comments_Reply].[pinglunshu] AS [pinglunshu]
+    FROM [dbo].[Remark_User_Comments_Reply] AS [Remark_User_Comments_Reply]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="salestop3" EntityType="Self.salestop3" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [salestop3].[BookID] AS [BookID], 
+    [salestop3].[BookImage] AS [BookImage], 
+    [salestop3].[BookName] AS [BookName], 
+    [salestop3].[BookAuthor] AS [BookAuthor], 
+    [salestop3].[IssueTime] AS [IssueTime], 
+    [salestop3].[Publisher] AS [Publisher], 
+    [salestop3].[Price] AS [Price], 
+    [salestop3].[Amount] AS [Amount], 
+    [salestop3].[Category] AS [Category], 
+    [salestop3].[CategoryId] AS [CategoryId]
+    FROM [dbo].[salestop3] AS [salestop3]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Attention__Atten__398D8EEE" Association="Self.FK__Attention__Atten__398D8EEE">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attention" EntitySet="Attention" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attention__Atten__6B24EA82" Association="Self.FK__Attention__Atten__6B24EA82">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attention" EntitySet="Attention" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attention__UserI__3A81B327" Association="Self.FK__Attention__UserI__3A81B327">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attention" EntitySet="Attention" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attention__UserI__6C190EBB" Association="Self.FK__Attention__UserI__6C190EBB">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attention" EntitySet="Attention" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookComme__BookI__3B75D760" Association="Self.FK__BookComme__BookI__3B75D760">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BookComment" EntitySet="BookComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookComme__UserI__3C69FB99" Association="Self.FK__BookComme__UserI__3C69FB99">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookComment" EntitySet="BookComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__CategoryI__3D5E1FD2" Association="Self.FK__Books__CategoryI__3D5E1FD2">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__CategoryI__6EF57B66" Association="Self.FK__Books__CategoryI__6EF57B66">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__BookI__3E52440B" Association="Self.FK__OrderDeta__BookI__3E52440B">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__70DDC3D8" Association="Self.FK__OrderDeta__Order__70DDC3D8">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__UserID__403A8C7D" Association="Self.FK__Orders__UserID__403A8C7D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkCom__Remar__412EB0B6" Association="Self.FK__RemarkCom__Remar__412EB0B6">
+            <End Role="Remarks" EntitySet="Remarks" />
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkCom__Remar__72C60C4A" Association="Self.FK__RemarkCom__Remar__72C60C4A">
+            <End Role="Remarks" EntitySet="Remarks" />
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkCom__UserI__4222D4EF" Association="Self.FK__RemarkCom__UserI__4222D4EF">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkCom__UserI__73BA3083" Association="Self.FK__RemarkCom__UserI__73BA3083">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkRep__Remar__4316F928" Association="Self.FK__RemarkRep__Remar__4316F928">
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+            <End Role="RemarkReply" EntitySet="RemarkReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkRep__Remar__74AE54BC" Association="Self.FK__RemarkRep__Remar__74AE54BC">
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+            <End Role="RemarkReply" EntitySet="RemarkReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkRep__UserI__440B1D61" Association="Self.FK__RemarkRep__UserI__440B1D61">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RemarkReply" EntitySet="RemarkReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkRep__UserI__75A278F5" Association="Self.FK__RemarkRep__UserI__75A278F5">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RemarkReply" EntitySet="RemarkReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Remarks__UserID__44FF419A" Association="Self.FK__Remarks__UserID__44FF419A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Remarks" EntitySet="Remarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Remarks__UserID__76969D2E" Association="Self.FK__Remarks__UserID__76969D2E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Remarks" EntitySet="Remarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shuoshuo__UserID__45F365D3" Association="Self.FK__Shuoshuo__UserID__45F365D3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Shuoshuo" EntitySet="Shuoshuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shuoshuo__UserID__778AC167" Association="Self.FK__Shuoshuo__UserID__778AC167">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Shuoshuo" EntitySet="Shuoshuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__Shuos__46E78A0C" Association="Self.FK__ShuoshuoC__Shuos__46E78A0C">
+            <End Role="Shuoshuo" EntitySet="Shuoshuo" />
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__Shuos__48CFD27E" Association="Self.FK__ShuoshuoC__Shuos__48CFD27E">
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+            <End Role="ShuoshuoComment_Reply" EntitySet="ShuoshuoComment_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__Shuos__787EE5A0" Association="Self.FK__ShuoshuoC__Shuos__787EE5A0">
+            <End Role="Shuoshuo" EntitySet="Shuoshuo" />
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__Shuos__7A672E12" Association="Self.FK__ShuoshuoC__Shuos__7A672E12">
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+            <End Role="ShuoshuoComment_Reply" EntitySet="ShuoshuoComment_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__UserI__47DBAE45" Association="Self.FK__ShuoshuoC__UserI__47DBAE45">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__UserI__49C3F6B7" Association="Self.FK__ShuoshuoC__UserI__49C3F6B7">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShuoshuoComment_Reply" EntitySet="ShuoshuoComment_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__UserI__797309D9" Association="Self.FK__ShuoshuoC__UserI__797309D9">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__UserI__7B5B524B" Association="Self.FK__ShuoshuoC__UserI__7B5B524B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShuoshuoComment_Reply" EntitySet="ShuoshuoComment_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Text__UserID__4AB81AF0" Association="Self.FK__Text__UserID__4AB81AF0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Text" EntitySet="Text" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Text__UserID__7C4F7684" Association="Self.FK__Text__UserID__7C4F7684">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Text" EntitySet="Text" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Video__UserID__4BAC3F29" Association="Self.FK__Video__UserID__4BAC3F29">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Video__UserID__7D439ABD" Association="Self.FK__Video__UserID__7D439ABD">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookRelpy_Users" Association="Self.FK_BookRelpy_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookRelpy" EntitySet="BookRelpy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookRelpy_Users1" Association="Self.FK_BookRelpy_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookRelpy" EntitySet="BookRelpy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Books" Association="Self.FK_Cars_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Users" Association="Self.FK_Cars_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="jiaoziModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Advice">
+          <Key>
+            <PropertyRef Name="AdviceID" />
+          </Key>
+          <Property Name="AdviceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Advice_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Advice_Time" Type="DateTime" Precision="3" />
+          <Property Name="AdviceFlag" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Attention">
+          <Key>
+            <PropertyRef Name="AttentionID" />
+          </Key>
+          <Property Name="AttentionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Attention_UserID" Type="Int32" Nullable="false" />
+          <Property Name="Condition" Type="Boolean" Nullable="false" />
+          <Property Name="Attention_Time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Attention__Atten__398D8EEE" FromRole="Attention" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__Attention__Atten__6B24EA82" FromRole="Attention" ToRole="Users" />
+          <NavigationProperty Name="Users2" Relationship="Self.FK__Attention__UserI__3A81B327" FromRole="Attention" ToRole="Users" />
+          <NavigationProperty Name="Users3" Relationship="Self.FK__Attention__UserI__6C190EBB" FromRole="Attention" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="BookComment">
+          <Key>
+            <PropertyRef Name="BookCommentID" />
+          </Key>
+          <Property Name="BookCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="Comment_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Comment_Time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__BookComme__BookI__3B75D760" FromRole="BookComment" ToRole="Books" />
+          <NavigationProperty Name="Books1" Relationship="Self.FK__BookComme__BookI__6D0D32F4" FromRole="BookComment" ToRole="Books" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__BookComme__UserI__3C69FB99" FromRole="BookComment" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__BookComme__UserI__6E01572D" FromRole="BookComment" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="BookRelpy">
+          <Key>
+            <PropertyRef Name="BookReplyID" />
+          </Key>
+          <Property Name="BookReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookCommentID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Reply_Time" Type="DateTime" Precision="3" />
+          <Property Name="Reply_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Ruser_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="jiaoziModel.FK_BookRelpy_Users" FromRole="BookRelpy" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="jiaoziModel.FK_BookRelpy_Users1" FromRole="BookRelpy" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BookName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BookAuthor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IssueTime" Type="DateTime" Precision="3" />
+          <Property Name="Publisher" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" />
+          <NavigationProperty Name="BookComment" Relationship="Self.FK__BookComme__BookI__3B75D760" FromRole="Books" ToRole="BookComment" />
+          <NavigationProperty Name="BookComment1" Relationship="Self.FK__BookComme__BookI__6D0D32F4" FromRole="Books" ToRole="BookComment" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK__Books__CategoryI__3D5E1FD2" FromRole="Books" ToRole="Category" />
+          <NavigationProperty Name="Category2" Relationship="Self.FK__Books__CategoryI__6EF57B66" FromRole="Books" ToRole="Category" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__BookI__3E52440B" FromRole="Books" ToRole="OrderDetails" />
+          <NavigationProperty Name="OrderDetails1" Relationship="Self.FK__OrderDeta__BookI__6FE99F9F" FromRole="Books" ToRole="OrderDetails" />
+          <NavigationProperty Name="Cars" Relationship="jiaoziModel.FK_Cars_Books" FromRole="Books" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="flag" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="jiaoziModel.FK_Cars_Books" FromRole="Cars" ToRole="Books" />
+          <NavigationProperty Name="Users" Relationship="jiaoziModel.FK_Cars_Users" FromRole="Cars" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Books__CategoryI__3D5E1FD2" FromRole="Category" ToRole="Books" />
+          <NavigationProperty Name="Books1" Relationship="Self.FK__Books__CategoryI__6EF57B66" FromRole="Category" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Name="NewsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="News_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="News_Time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailsID" />
+          </Key>
+          <Property Name="OrderDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__OrderDeta__BookI__3E52440B" FromRole="OrderDetails" ToRole="Books" />
+          <NavigationProperty Name="Books1" Relationship="Self.FK__OrderDeta__BookI__6FE99F9F" FromRole="OrderDetails" ToRole="Books" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderDeta__Order__3F466844" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="Orders1" Relationship="Self.FK__OrderDeta__Order__70DDC3D8" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="Users" Relationship="jiaoziModel.FK__OrderDeta__Order__70DDC3D81" FromRole="OrderDetails" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="total" Type="Double" Nullable="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__3F466844" FromRole="Orders" ToRole="OrderDetails" />
+          <NavigationProperty Name="OrderDetails1" Relationship="Self.FK__OrderDeta__Order__70DDC3D8" FromRole="Orders" ToRole="OrderDetails" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Orders__UserID__403A8C7D" FromRole="Orders" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__Orders__UserID__71D1E811" FromRole="Orders" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="RemarkComments">
+          <Key>
+            <PropertyRef Name="RemarkCommentID" />
+          </Key>
+          <Property Name="RemarkCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment_Time" Type="DateTime" Precision="3" />
+          <Property Name="Comment_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="RemarkID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Remarks" Relationship="Self.FK__RemarkCom__Remar__412EB0B6" FromRole="RemarkComments" ToRole="Remarks" />
+          <NavigationProperty Name="Remarks1" Relationship="Self.FK__RemarkCom__Remar__72C60C4A" FromRole="RemarkComments" ToRole="Remarks" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__RemarkCom__UserI__4222D4EF" FromRole="RemarkComments" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__RemarkCom__UserI__73BA3083" FromRole="RemarkComments" ToRole="Users" />
+          <NavigationProperty Name="RemarkReply" Relationship="Self.FK__RemarkRep__Remar__4316F928" FromRole="RemarkComments" ToRole="RemarkReply" />
+          <NavigationProperty Name="RemarkReply1" Relationship="Self.FK__RemarkRep__Remar__74AE54BC" FromRole="RemarkComments" ToRole="RemarkReply" />
+        </EntityType>
+        <EntityType Name="RemarkReply">
+          <Key>
+            <PropertyRef Name="RemarkReplyID" />
+          </Key>
+          <Property Name="RemarkReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RemarkCommentID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Reply_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Reply_Time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="RemarkComments" Relationship="Self.FK__RemarkRep__Remar__4316F928" FromRole="RemarkReply" ToRole="RemarkComments" />
+          <NavigationProperty Name="RemarkComments1" Relationship="Self.FK__RemarkRep__Remar__74AE54BC" FromRole="RemarkReply" ToRole="RemarkComments" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__RemarkRep__UserI__440B1D61" FromRole="RemarkReply" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__RemarkRep__UserI__75A278F5" FromRole="RemarkReply" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Remarks">
+          <Key>
+            <PropertyRef Name="RemarkID" />
+          </Key>
+          <Property Name="RemarkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RemarkContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RemarkFlag" Type="Int32" />
+          <Property Name="Remark_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="RemarkComments" Relationship="Self.FK__RemarkCom__Remar__412EB0B6" FromRole="Remarks" ToRole="RemarkComments" />
+          <NavigationProperty Name="RemarkComments1" Relationship="Self.FK__RemarkCom__Remar__72C60C4A" FromRole="Remarks" ToRole="RemarkComments" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Remarks__UserID__44FF419A" FromRole="Remarks" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__Remarks__UserID__76969D2E" FromRole="Remarks" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Shuoshuo">
+          <Key>
+            <PropertyRef Name="ShuoshuoID" />
+          </Key>
+          <Property Name="ShuoshuoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Shuoshuo_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Shuoshuo_Time" Type="DateTime" Precision="3" />
+          <Property Name="Thumb_Num" Type="Int32" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Shuoshuo__UserID__45F365D3" FromRole="Shuoshuo" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__Shuoshuo__UserID__778AC167" FromRole="Shuoshuo" ToRole="Users" />
+          <NavigationProperty Name="ShuoshuoComment" Relationship="Self.FK__ShuoshuoC__Shuos__46E78A0C" FromRole="Shuoshuo" ToRole="ShuoshuoComment" />
+          <NavigationProperty Name="ShuoshuoComment1" Relationship="Self.FK__ShuoshuoC__Shuos__787EE5A0" FromRole="Shuoshuo" ToRole="ShuoshuoComment" />
+        </EntityType>
+        <EntityType Name="ShuoshuoComment">
+          <Key>
+            <PropertyRef Name="ShuoshuoCommentID" />
+          </Key>
+          <Property Name="ShuoshuoCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment_Time" Type="DateTime" Precision="3" />
+          <Property Name="Comment_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ShuoshuoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shuoshuo" Relationship="Self.FK__ShuoshuoC__Shuos__46E78A0C" FromRole="ShuoshuoComment" ToRole="Shuoshuo" />
+          <NavigationProperty Name="Shuoshuo1" Relationship="Self.FK__ShuoshuoC__Shuos__787EE5A0" FromRole="ShuoshuoComment" ToRole="Shuoshuo" />
+          <NavigationProperty Name="ShuoshuoComment_Reply" Relationship="Self.FK__ShuoshuoC__Shuos__48CFD27E" FromRole="ShuoshuoComment" ToRole="ShuoshuoComment_Reply" />
+          <NavigationProperty Name="ShuoshuoComment_Reply1" Relationship="Self.FK__ShuoshuoC__Shuos__7A672E12" FromRole="ShuoshuoComment" ToRole="ShuoshuoComment_Reply" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__ShuoshuoC__UserI__47DBAE45" FromRole="ShuoshuoComment" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__ShuoshuoC__UserI__797309D9" FromRole="ShuoshuoComment" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ShuoshuoComment_Reply">
+          <Key>
+            <PropertyRef Name="ShuoshuoComment_ReplyID" />
+          </Key>
+          <Property Name="ShuoshuoComment_ReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reply_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Reply_Time" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="ShuoshuoCommentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ShuoshuoComment" Relationship="Self.FK__ShuoshuoC__Shuos__48CFD27E" FromRole="ShuoshuoComment_Reply" ToRole="ShuoshuoComment" />
+          <NavigationProperty Name="ShuoshuoComment1" Relationship="Self.FK__ShuoshuoC__Shuos__7A672E12" FromRole="ShuoshuoComment_Reply" ToRole="ShuoshuoComment" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__ShuoshuoC__UserI__49C3F6B7" FromRole="ShuoshuoComment_Reply" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__ShuoshuoC__UserI__7B5B524B" FromRole="ShuoshuoComment_Reply" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Text">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Text_Time" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Textname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Text__UserID__4AB81AF0" FromRole="Text" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__Text__UserID__7C4F7684" FromRole="Text" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="TextResource">
+          <Key>
+            <PropertyRef Name="TextReourceID" />
+          </Key>
+          <Property Name="TextReourceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PastexampaperOrNot" Type="Boolean" />
+          <Property Name="Text_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Text_Time" Type="DateTime" Precision="3" />
+          <Property Name="Stage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HeadImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TrueName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Birth" Type="DateTime" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="UserFlag" Type="Int32" Nullable="false" />
+          <Property Name="SpeakOrNot" Type="Boolean" />
+          <NavigationProperty Name="Attention" Relationship="Self.FK__Attention__Atten__398D8EEE" FromRole="Users" ToRole="Attention" />
+          <NavigationProperty Name="Attention1" Relationship="Self.FK__Attention__Atten__6B24EA82" FromRole="Users" ToRole="Attention" />
+          <NavigationProperty Name="Attention2" Relationship="Self.FK__Attention__UserI__3A81B327" FromRole="Users" ToRole="Attention" />
+          <NavigationProperty Name="Attention3" Relationship="Self.FK__Attention__UserI__6C190EBB" FromRole="Users" ToRole="Attention" />
+          <NavigationProperty Name="BookComment" Relationship="Self.FK__BookComme__UserI__3C69FB99" FromRole="Users" ToRole="BookComment" />
+          <NavigationProperty Name="BookComment1" Relationship="Self.FK__BookComme__UserI__6E01572D" FromRole="Users" ToRole="BookComment" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__UserID__403A8C7D" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="Orders1" Relationship="Self.FK__Orders__UserID__71D1E811" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="RemarkComments" Relationship="Self.FK__RemarkCom__UserI__4222D4EF" FromRole="Users" ToRole="RemarkComments" />
+          <NavigationProperty Name="RemarkComments1" Relationship="Self.FK__RemarkCom__UserI__73BA3083" FromRole="Users" ToRole="RemarkComments" />
+          <NavigationProperty Name="RemarkReply" Relationship="Self.FK__RemarkRep__UserI__440B1D61" FromRole="Users" ToRole="RemarkReply" />
+          <NavigationProperty Name="RemarkReply1" Relationship="Self.FK__RemarkRep__UserI__75A278F5" FromRole="Users" ToRole="RemarkReply" />
+          <NavigationProperty Name="Remarks" Relationship="Self.FK__Remarks__UserID__44FF419A" FromRole="Users" ToRole="Remarks" />
+          <NavigationProperty Name="Remarks1" Relationship="Self.FK__Remarks__UserID__76969D2E" FromRole="Users" ToRole="Remarks" />
+          <NavigationProperty Name="Shuoshuo" Relationship="Self.FK__Shuoshuo__UserID__45F365D3" FromRole="Users" ToRole="Shuoshuo" />
+          <NavigationProperty Name="Shuoshuo1" Relationship="Self.FK__Shuoshuo__UserID__778AC167" FromRole="Users" ToRole="Shuoshuo" />
+          <NavigationProperty Name="ShuoshuoComment" Relationship="Self.FK__ShuoshuoC__UserI__47DBAE45" FromRole="Users" ToRole="ShuoshuoComment" />
+          <NavigationProperty Name="ShuoshuoComment1" Relationship="Self.FK__ShuoshuoC__UserI__797309D9" FromRole="Users" ToRole="ShuoshuoComment" />
+          <NavigationProperty Name="ShuoshuoComment_Reply" Relationship="Self.FK__ShuoshuoC__UserI__49C3F6B7" FromRole="Users" ToRole="ShuoshuoComment_Reply" />
+          <NavigationProperty Name="ShuoshuoComment_Reply1" Relationship="Self.FK__ShuoshuoC__UserI__7B5B524B" FromRole="Users" ToRole="ShuoshuoComment_Reply" />
+          <NavigationProperty Name="Text" Relationship="Self.FK__Text__UserID__4AB81AF0" FromRole="Users" ToRole="Text" />
+          <NavigationProperty Name="Text1" Relationship="Self.FK__Text__UserID__7C4F7684" FromRole="Users" ToRole="Text" />
+          <NavigationProperty Name="Video" Relationship="Self.FK__Video__UserID__4BAC3F29" FromRole="Users" ToRole="Video" />
+          <NavigationProperty Name="Video1" Relationship="Self.FK__Video__UserID__7D439ABD" FromRole="Users" ToRole="Video" />
+          <NavigationProperty Name="BookRelpy" Relationship="jiaoziModel.FK_BookRelpy_Users" FromRole="Users" ToRole="BookRelpy" />
+          <NavigationProperty Name="BookRelpy1" Relationship="jiaoziModel.FK_BookRelpy_Users1" FromRole="Users" ToRole="BookRelpy" />
+          <NavigationProperty Name="Cars" Relationship="jiaoziModel.FK_Cars_Users" FromRole="Users" ToRole="Cars" />
+          <NavigationProperty Name="OrderDetails" Relationship="jiaoziModel.FK__OrderDeta__Order__70DDC3D81" FromRole="Users" ToRole="OrderDetails" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="VideoID" />
+          </Key>
+          <Property Name="VideoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VideoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="downloadcount" Type="Int32" />
+          <Property Name="Video_Time" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Videoname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Video__UserID__4BAC3F29" FromRole="Video" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK__Video__UserID__7D439ABD" FromRole="Video" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="VideoResource">
+          <Key>
+            <PropertyRef Name="VideoResourceID" />
+          </Key>
+          <Property Name="VideoResourceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Video_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Video" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Video_Time" Type="DateTime" Precision="3" />
+          <Property Name="Stage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Remark_User_Comments_Reply">
+          <Key>
+            <PropertyRef Name="Remark_time" />
+            <PropertyRef Name="RemarkID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Remark_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RemarkID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="pinglunshu" Type="Int32" />
+        </EntityType>
+        <EntityType Name="salestop3">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BookName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BookAuthor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IssueTime" Type="DateTime" Precision="3" />
+          <Property Name="Publisher" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Category" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__Attention__Atten__398D8EEE">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Attention">
+              <PropertyRef Name="Attention_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attention__Atten__6B24EA82">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Attention">
+              <PropertyRef Name="Attention_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attention__UserI__3A81B327">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Attention">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attention__UserI__6C190EBB">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Attention" Type="Self.Attention" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Attention">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookComme__BookI__3B75D760">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="BookComment" Type="Self.BookComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookComment">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookComme__BookI__6D0D32F4">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="BookComment" Type="Self.BookComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookComment">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookComme__UserI__3C69FB99">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BookComment" Type="Self.BookComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookComment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BookComme__UserI__6E01572D">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="BookComment" Type="Self.BookComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookComment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__CategoryI__3D5E1FD2">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__CategoryI__6EF57B66">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__BookI__3E52440B">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__BookI__6FE99F9F">
+          <End Role="Books" Type="Self.Books" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__3F466844">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__70DDC3D8">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__UserID__403A8C7D">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__UserID__71D1E811">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkCom__Remar__412EB0B6">
+          <End Role="Remarks" Type="Self.Remarks" Multiplicity="1" />
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Remarks">
+              <PropertyRef Name="RemarkID" />
+            </Principal>
+            <Dependent Role="RemarkComments">
+              <PropertyRef Name="RemarkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkCom__Remar__72C60C4A">
+          <End Role="Remarks" Type="Self.Remarks" Multiplicity="1" />
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Remarks">
+              <PropertyRef Name="RemarkID" />
+            </Principal>
+            <Dependent Role="RemarkComments">
+              <PropertyRef Name="RemarkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkCom__UserI__4222D4EF">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RemarkComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkCom__UserI__73BA3083">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RemarkComments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkRep__Remar__4316F928">
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="1" />
+          <End Role="RemarkReply" Type="Self.RemarkReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RemarkComments">
+              <PropertyRef Name="RemarkCommentID" />
+            </Principal>
+            <Dependent Role="RemarkReply">
+              <PropertyRef Name="RemarkCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkRep__Remar__74AE54BC">
+          <End Role="RemarkComments" Type="Self.RemarkComments" Multiplicity="1" />
+          <End Role="RemarkReply" Type="Self.RemarkReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RemarkComments">
+              <PropertyRef Name="RemarkCommentID" />
+            </Principal>
+            <Dependent Role="RemarkReply">
+              <PropertyRef Name="RemarkCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkRep__UserI__440B1D61">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RemarkReply" Type="Self.RemarkReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RemarkReply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RemarkRep__UserI__75A278F5">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="RemarkReply" Type="Self.RemarkReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RemarkReply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Remarks__UserID__44FF419A">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Remarks" Type="Self.Remarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Remarks">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Remarks__UserID__76969D2E">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Remarks" Type="Self.Remarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Remarks">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shuoshuo__UserID__45F365D3">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Shuoshuo" Type="Self.Shuoshuo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Shuoshuo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shuoshuo__UserID__778AC167">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Shuoshuo" Type="Self.Shuoshuo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Shuoshuo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__Shuos__46E78A0C">
+          <End Role="Shuoshuo" Type="Self.Shuoshuo" Multiplicity="1" />
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shuoshuo">
+              <PropertyRef Name="ShuoshuoID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment">
+              <PropertyRef Name="ShuoshuoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__Shuos__787EE5A0">
+          <End Role="Shuoshuo" Type="Self.Shuoshuo" Multiplicity="1" />
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shuoshuo">
+              <PropertyRef Name="ShuoshuoID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment">
+              <PropertyRef Name="ShuoshuoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__Shuos__48CFD27E">
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="1" />
+          <End Role="ShuoshuoComment_Reply" Type="Self.ShuoshuoComment_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShuoshuoComment">
+              <PropertyRef Name="ShuoshuoCommentID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment_Reply">
+              <PropertyRef Name="ShuoshuoCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__Shuos__7A672E12">
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="1" />
+          <End Role="ShuoshuoComment_Reply" Type="Self.ShuoshuoComment_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ShuoshuoComment">
+              <PropertyRef Name="ShuoshuoCommentID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment_Reply">
+              <PropertyRef Name="ShuoshuoCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__UserI__47DBAE45">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__UserI__797309D9">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShuoshuoComment" Type="Self.ShuoshuoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__UserI__49C3F6B7">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShuoshuoComment_Reply" Type="Self.ShuoshuoComment_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment_Reply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ShuoshuoC__UserI__7B5B524B">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ShuoshuoComment_Reply" Type="Self.ShuoshuoComment_Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ShuoshuoComment_Reply">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Text__UserID__4AB81AF0">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Text" Type="Self.Text" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Text">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Text__UserID__7C4F7684">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Text" Type="Self.Text" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Text">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Video__UserID__4BAC3F29">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Video__UserID__7D439ABD">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="jiaoziEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Advice" EntityType="Self.Advice" />
+          <EntitySet Name="Attention" EntityType="Self.Attention" />
+          <EntitySet Name="BookComment" EntityType="Self.BookComment" />
+          <EntitySet Name="BookRelpy" EntityType="Self.BookRelpy" />
+          <EntitySet Name="Books" EntityType="Self.Books" />
+          <EntitySet Name="Cars" EntityType="Self.Cars" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="RemarkComments" EntityType="Self.RemarkComments" />
+          <EntitySet Name="RemarkReply" EntityType="Self.RemarkReply" />
+          <EntitySet Name="Remarks" EntityType="Self.Remarks" />
+          <EntitySet Name="Shuoshuo" EntityType="Self.Shuoshuo" />
+          <EntitySet Name="ShuoshuoComment" EntityType="Self.ShuoshuoComment" />
+          <EntitySet Name="ShuoshuoComment_Reply" EntityType="Self.ShuoshuoComment_Reply" />
+          <EntitySet Name="Text" EntityType="Self.Text" />
+          <EntitySet Name="TextResource" EntityType="Self.TextResource" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Video" EntityType="Self.Video" />
+          <EntitySet Name="VideoResource" EntityType="Self.VideoResource" />
+          <EntitySet Name="Remark_User_Comments_Reply" EntityType="Self.Remark_User_Comments_Reply" />
+          <EntitySet Name="salestop3" EntityType="Self.salestop3" />
+          <AssociationSet Name="FK__Attention__Atten__398D8EEE" Association="Self.FK__Attention__Atten__398D8EEE">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attention" EntitySet="Attention" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attention__Atten__6B24EA82" Association="Self.FK__Attention__Atten__6B24EA82">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attention" EntitySet="Attention" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attention__UserI__3A81B327" Association="Self.FK__Attention__UserI__3A81B327">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attention" EntitySet="Attention" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attention__UserI__6C190EBB" Association="Self.FK__Attention__UserI__6C190EBB">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Attention" EntitySet="Attention" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookComme__BookI__3B75D760" Association="Self.FK__BookComme__BookI__3B75D760">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BookComment" EntitySet="BookComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookComme__BookI__6D0D32F4" Association="Self.FK__BookComme__BookI__6D0D32F4">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BookComment" EntitySet="BookComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookComme__UserI__3C69FB99" Association="Self.FK__BookComme__UserI__3C69FB99">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookComment" EntitySet="BookComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BookComme__UserI__6E01572D" Association="Self.FK__BookComme__UserI__6E01572D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookComment" EntitySet="BookComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__CategoryI__3D5E1FD2" Association="Self.FK__Books__CategoryI__3D5E1FD2">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__CategoryI__6EF57B66" Association="Self.FK__Books__CategoryI__6EF57B66">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__BookI__3E52440B" Association="Self.FK__OrderDeta__BookI__3E52440B">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__BookI__6FE99F9F" Association="Self.FK__OrderDeta__BookI__6FE99F9F">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__3F466844" Association="Self.FK__OrderDeta__Order__3F466844">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__70DDC3D8" Association="Self.FK__OrderDeta__Order__70DDC3D8">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__UserID__403A8C7D" Association="Self.FK__Orders__UserID__403A8C7D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__UserID__71D1E811" Association="Self.FK__Orders__UserID__71D1E811">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkCom__Remar__412EB0B6" Association="Self.FK__RemarkCom__Remar__412EB0B6">
+            <End Role="Remarks" EntitySet="Remarks" />
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkCom__Remar__72C60C4A" Association="Self.FK__RemarkCom__Remar__72C60C4A">
+            <End Role="Remarks" EntitySet="Remarks" />
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkCom__UserI__4222D4EF" Association="Self.FK__RemarkCom__UserI__4222D4EF">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkCom__UserI__73BA3083" Association="Self.FK__RemarkCom__UserI__73BA3083">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkRep__Remar__4316F928" Association="Self.FK__RemarkRep__Remar__4316F928">
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+            <End Role="RemarkReply" EntitySet="RemarkReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkRep__Remar__74AE54BC" Association="Self.FK__RemarkRep__Remar__74AE54BC">
+            <End Role="RemarkComments" EntitySet="RemarkComments" />
+            <End Role="RemarkReply" EntitySet="RemarkReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkRep__UserI__440B1D61" Association="Self.FK__RemarkRep__UserI__440B1D61">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RemarkReply" EntitySet="RemarkReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RemarkRep__UserI__75A278F5" Association="Self.FK__RemarkRep__UserI__75A278F5">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="RemarkReply" EntitySet="RemarkReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Remarks__UserID__44FF419A" Association="Self.FK__Remarks__UserID__44FF419A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Remarks" EntitySet="Remarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Remarks__UserID__76969D2E" Association="Self.FK__Remarks__UserID__76969D2E">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Remarks" EntitySet="Remarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shuoshuo__UserID__45F365D3" Association="Self.FK__Shuoshuo__UserID__45F365D3">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Shuoshuo" EntitySet="Shuoshuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shuoshuo__UserID__778AC167" Association="Self.FK__Shuoshuo__UserID__778AC167">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Shuoshuo" EntitySet="Shuoshuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__Shuos__46E78A0C" Association="Self.FK__ShuoshuoC__Shuos__46E78A0C">
+            <End Role="Shuoshuo" EntitySet="Shuoshuo" />
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__Shuos__787EE5A0" Association="Self.FK__ShuoshuoC__Shuos__787EE5A0">
+            <End Role="Shuoshuo" EntitySet="Shuoshuo" />
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__Shuos__48CFD27E" Association="Self.FK__ShuoshuoC__Shuos__48CFD27E">
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+            <End Role="ShuoshuoComment_Reply" EntitySet="ShuoshuoComment_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__Shuos__7A672E12" Association="Self.FK__ShuoshuoC__Shuos__7A672E12">
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+            <End Role="ShuoshuoComment_Reply" EntitySet="ShuoshuoComment_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__UserI__47DBAE45" Association="Self.FK__ShuoshuoC__UserI__47DBAE45">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__UserI__797309D9" Association="Self.FK__ShuoshuoC__UserI__797309D9">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShuoshuoComment" EntitySet="ShuoshuoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__UserI__49C3F6B7" Association="Self.FK__ShuoshuoC__UserI__49C3F6B7">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShuoshuoComment_Reply" EntitySet="ShuoshuoComment_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ShuoshuoC__UserI__7B5B524B" Association="Self.FK__ShuoshuoC__UserI__7B5B524B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ShuoshuoComment_Reply" EntitySet="ShuoshuoComment_Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Text__UserID__4AB81AF0" Association="Self.FK__Text__UserID__4AB81AF0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Text" EntitySet="Text" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Text__UserID__7C4F7684" Association="Self.FK__Text__UserID__7C4F7684">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Text" EntitySet="Text" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Video__UserID__4BAC3F29" Association="Self.FK__Video__UserID__4BAC3F29">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Video__UserID__7D439ABD" Association="Self.FK__Video__UserID__7D439ABD">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <FunctionImport Name="Car_buy">
+            <Parameter Name="UserId" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="UserPhone" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK_BookRelpy_Users" Association="jiaoziModel.FK_BookRelpy_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookRelpy" EntitySet="BookRelpy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookRelpy_Users1" Association="jiaoziModel.FK_BookRelpy_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="BookRelpy" EntitySet="BookRelpy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Books" Association="jiaoziModel.FK_Cars_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Users" Association="jiaoziModel.FK_Cars_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__70DDC3D81" Association="jiaoziModel.FK__OrderDeta__Order__70DDC3D81">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_BookRelpy_Users">
+          <End Type="jiaoziModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="jiaoziModel.BookRelpy" Role="BookRelpy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookRelpy">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookRelpy_Users1">
+          <End Type="jiaoziModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="jiaoziModel.BookRelpy" Role="BookRelpy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookRelpy">
+              <PropertyRef Name="Ruser_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Books">
+          <End Type="jiaoziModel.Books" Role="Books" Multiplicity="1" />
+          <End Type="jiaoziModel.Cars" Role="Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Users">
+          <End Type="jiaoziModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="jiaoziModel.Cars" Role="Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__70DDC3D81">
+          <End Type="jiaoziModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="jiaoziModel.OrderDetails" Role="OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="jiaoziModelStoreContainer" CdmEntityContainer="jiaoziEntities">
+          <EntitySetMapping Name="Advice">
+            <EntityTypeMapping TypeName="jiaoziModel.Advice">
+              <MappingFragment StoreEntitySet="Advice">
+                <ScalarProperty Name="AdviceID" ColumnName="AdviceID" />
+                <ScalarProperty Name="Advice_Content" ColumnName="Advice_Content" />
+                <ScalarProperty Name="Advice_Time" ColumnName="Advice_Time" />
+                <ScalarProperty Name="AdviceFlag" ColumnName="AdviceFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attention">
+            <EntityTypeMapping TypeName="jiaoziModel.Attention">
+              <MappingFragment StoreEntitySet="Attention">
+                <ScalarProperty Name="AttentionID" ColumnName="AttentionID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Attention_UserID" ColumnName="Attention_UserID" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="Attention_Time" ColumnName="Attention_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookComment">
+            <EntityTypeMapping TypeName="jiaoziModel.BookComment">
+              <MappingFragment StoreEntitySet="BookComment">
+                <ScalarProperty Name="BookCommentID" ColumnName="BookCommentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="Comment_Content" ColumnName="Comment_Content" />
+                <ScalarProperty Name="Comment_Time" ColumnName="Comment_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookRelpy">
+            <EntityTypeMapping TypeName="jiaoziModel.BookRelpy">
+              <MappingFragment StoreEntitySet="BookRelpy">
+                <ScalarProperty Name="BookReplyID" ColumnName="BookReplyID" />
+                <ScalarProperty Name="BookCommentID" ColumnName="BookCommentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Reply_Time" ColumnName="Reply_Time" />
+                <ScalarProperty Name="Reply_Content" ColumnName="Reply_Content" />
+                <ScalarProperty Name="Ruser_ID" ColumnName="Ruser_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="jiaoziModel.Books">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="BookImage" ColumnName="BookImage" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="BookAuthor" ColumnName="BookAuthor" />
+                <ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="jiaoziModel.Cars">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="flag" ColumnName="flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="jiaoziModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="jiaoziModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="News_Content" ColumnName="News_Content" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="News_Time" ColumnName="News_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="jiaoziModel.OrderDetails">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="OrderDetailsID" ColumnName="OrderDetailsID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="jiaoziModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RemarkComments">
+            <EntityTypeMapping TypeName="jiaoziModel.RemarkComments">
+              <MappingFragment StoreEntitySet="RemarkComments">
+                <ScalarProperty Name="RemarkCommentID" ColumnName="RemarkCommentID" />
+                <ScalarProperty Name="Comment_Time" ColumnName="Comment_Time" />
+                <ScalarProperty Name="Comment_Content" ColumnName="Comment_Content" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RemarkID" ColumnName="RemarkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RemarkReply">
+            <EntityTypeMapping TypeName="jiaoziModel.RemarkReply">
+              <MappingFragment StoreEntitySet="RemarkReply">
+                <ScalarProperty Name="RemarkReplyID" ColumnName="RemarkReplyID" />
+                <ScalarProperty Name="RemarkCommentID" ColumnName="RemarkCommentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Reply_Content" ColumnName="Reply_Content" />
+                <ScalarProperty Name="Reply_Time" ColumnName="Reply_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Remarks">
+            <EntityTypeMapping TypeName="jiaoziModel.Remarks">
+              <MappingFragment StoreEntitySet="Remarks">
+                <ScalarProperty Name="RemarkID" ColumnName="RemarkID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="RemarkContent" ColumnName="RemarkContent" />
+                <ScalarProperty Name="RemarkFlag" ColumnName="RemarkFlag" />
+                <ScalarProperty Name="Remark_Time" ColumnName="Remark_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shuoshuo">
+            <EntityTypeMapping TypeName="jiaoziModel.Shuoshuo">
+              <MappingFragment StoreEntitySet="Shuoshuo">
+                <ScalarProperty Name="ShuoshuoID" ColumnName="ShuoshuoID" />
+                <ScalarProperty Name="Shuoshuo_Content" ColumnName="Shuoshuo_Content" />
+                <ScalarProperty Name="Shuoshuo_Time" ColumnName="Shuoshuo_Time" />
+                <ScalarProperty Name="Thumb_Num" ColumnName="Thumb_Num" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShuoshuoComment">
+            <EntityTypeMapping TypeName="jiaoziModel.ShuoshuoComment">
+              <MappingFragment StoreEntitySet="ShuoshuoComment">
+                <ScalarProperty Name="ShuoshuoCommentID" ColumnName="ShuoshuoCommentID" />
+                <ScalarProperty Name="Comment_Time" ColumnName="Comment_Time" />
+                <ScalarProperty Name="Comment_Content" ColumnName="Comment_Content" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ShuoshuoID" ColumnName="ShuoshuoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShuoshuoComment_Reply">
+            <EntityTypeMapping TypeName="jiaoziModel.ShuoshuoComment_Reply">
+              <MappingFragment StoreEntitySet="ShuoshuoComment_Reply">
+                <ScalarProperty Name="ShuoshuoComment_ReplyID" ColumnName="ShuoshuoComment_ReplyID" />
+                <ScalarProperty Name="Reply_Content" ColumnName="Reply_Content" />
+                <ScalarProperty Name="Reply_Time" ColumnName="Reply_Time" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ShuoshuoCommentID" ColumnName="ShuoshuoCommentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Text">
+            <EntityTypeMapping TypeName="jiaoziModel.Text">
+              <MappingFragment StoreEntitySet="Text">
+                <ScalarProperty Name="TextID" ColumnName="TextID" />
+                <ScalarProperty Name="Text_path" ColumnName="Text_path" />
+                <ScalarProperty Name="Text_Time" ColumnName="Text_Time" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Textname" ColumnName="Textname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TextResource">
+            <EntityTypeMapping TypeName="jiaoziModel.TextResource">
+              <MappingFragment StoreEntitySet="TextResource">
+                <ScalarProperty Name="TextReourceID" ColumnName="TextReourceID" />
+                <ScalarProperty Name="PastexampaperOrNot" ColumnName="PastexampaperOrNot" />
+                <ScalarProperty Name="Text_Name" ColumnName="Text_Name" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Text_Time" ColumnName="Text_Time" />
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="jiaoziModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="HeadImage" ColumnName="HeadImage" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="TrueName" ColumnName="TrueName" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="UserFlag" ColumnName="UserFlag" />
+                <ScalarProperty Name="SpeakOrNot" ColumnName="SpeakOrNot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Video">
+            <EntityTypeMapping TypeName="jiaoziModel.Video">
+              <MappingFragment StoreEntitySet="Video">
+                <ScalarProperty Name="VideoID" ColumnName="VideoID" />
+                <ScalarProperty Name="VideoPath" ColumnName="VideoPath" />
+                <ScalarProperty Name="downloadcount" ColumnName="downloadcount" />
+                <ScalarProperty Name="Video_Time" ColumnName="Video_Time" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Videoname" ColumnName="Videoname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoResource">
+            <EntityTypeMapping TypeName="jiaoziModel.VideoResource">
+              <MappingFragment StoreEntitySet="VideoResource">
+                <ScalarProperty Name="VideoResourceID" ColumnName="VideoResourceID" />
+                <ScalarProperty Name="Video_Name" ColumnName="Video_Name" />
+                <ScalarProperty Name="Video" ColumnName="Video" />
+                <ScalarProperty Name="Video_Time" ColumnName="Video_Time" />
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Remark_User_Comments_Reply">
+            <EntityTypeMapping TypeName="jiaoziModel.Remark_User_Comments_Reply">
+              <MappingFragment StoreEntitySet="Remark_User_Comments_Reply">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Remark_time" ColumnName="Remark_time" />
+                <ScalarProperty Name="RemarkID" ColumnName="RemarkID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="pinglunshu" ColumnName="pinglunshu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salestop3">
+            <EntityTypeMapping TypeName="jiaoziModel.salestop3">
+              <MappingFragment StoreEntitySet="salestop3">
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="BookImage" ColumnName="BookImage" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="BookAuthor" ColumnName="BookAuthor" />
+                <ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Car_buy" FunctionName="jiaoziModel.Store.Car_buy" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

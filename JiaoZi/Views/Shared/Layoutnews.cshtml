@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewBag.Title = "Layoutluntan";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 教资服务网</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <link href="~/Content/shouye.css" rel="stylesheet" />
+        <link href="~/Content/ionic.min.css" rel="stylesheet" />
+
+
+        <script src="~/Scripts/ionic.bundle.min.js"></script>
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+    <style>
+        #tx {
+            width: 101px;
+            height: 50px;
+            float: right;
+            margin-top: -49px;
+            border: 1px solid #ffffff;
+            margin-right: 120px;
+            border-radius: 10px;
+        }
+
+            #tx li {
+                list-style: none;
+                margin-bottom: 4px;
+                border-radius: 4px;
+                text-align: center;
+            }
+
+            #tx .ll {
+                position: relative;
+                right: 96px;
+                display: none;
+            }
+
+        #toTop {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            right: 0;
+            bottom: 0;
+            display: none;
+        }
+
+        #bodydiv {
+            max-width: 1800px;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+        ul li{
+                list-style: none;
+            }
+    </style>
+</head>
+<body style="background-color:#f1e9e1;height:800px;overflow-y:auto;" id="con">
+    <div class="navbar navbar-inverse navbar-fixed-top" id="Mydaohang">
+        <div class="container-fluid">
+            <div style="width:50px;height:50px;float:left;margin-left:30px">
+                <img src="~/images/beijing/未标题-1.gif" style="width:45px;height:45px;" />
+            </div>
+            <div class="navbar-header" style="margin-left:240px;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("教资考试服务网", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("考试中心", "KSZX", "Home")</li>*@
+                    <li>@Html.ActionLink("教资资讯", "Index", "News")</li>
+                    <li>@Html.ActionLink("个人空间", "Index", "Kongjian")</li>
+                    <li>@Html.ActionLink("备考资源库", "Index", "Resource")</li>
+                    <li>@Html.ActionLink("考试论坛", "Index", "Luntan")</li>
+                    <li>@Html.ActionLink("备考书店", "Index", "Mall")</li>
+                </ul>
+            </div>
+        </div>
+        @Html.Partial("TX")
+    </div>
+    <div id="bodydiv">
+        @RenderBody()
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+
+    <footer class="container-fluid text-center">
+        <div class="container">
+            <div class="container-fluid text-center">
+                <div class="box">
+                    <span class="line"></span>
+                    <span class="txt">End</span>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <ul>
+                        <li>
+                            <b>关于新闻</b>
+                            <p style="margin-top:20px"><a href="#" style="color:black">新闻热点</a></p>
+                            <p><a href="#" style="color:black">新闻那些事</a></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul>
+                        <li>
+                            <b>服务内容</b>
+                            <p style="margin-top:20px"><a href="#" style="color:black">最新资讯</a></p>
+                            <p><a href="#" style="color:black">社会热点</a></p>
+                            <p><a href="#" style="color:black">考试预测</a></p>
+                            <p><a href="#" style="color:black">国家政策</a></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul>
+                        <li>
+                            <b>联系我们</b>
+                            <p style="margin-top:20px"><span>南昌市X3522工作室</span></p>
+                            <p>地址：南昌市紫阳大道99号江西师范大学</p>
+                            <p>电话：150-0793-2468</p>
+                            <p>
+                                邮箱：562437969@qq.com
+                            </p>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <ul>
+                        <li><b>关于教师资格证考试</b></li>
+                        <li style="margin-top:20px">
+                            <a class="iconfont1" style="color:black">&#xe602;</a>
+                            <a class="iconfont1" style="color:black">&#xe601;</a>
+                            <a class="iconfont1" style="color:black">&#xe600;</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div id="toTop">
+            <img src="~/images/Css/totop.jpg" style="width:50px;height:50px;" title="回到顶部" />
+        </div>
+    </footer>
+
+
+</body>
+</html>
+
+<script>
+    $(function () {
+        //$("#tx").mouseover(function () {
+        //    $(".ll").css("display", "block");
+
+        //})
+        $(window).scroll(function () {
+            var height = $(document).scrollTop();
+            if (height != 0) {
+                $("#toTop").show();
+            }
+            else
+                $("#toTop").hide();
+        })
+        $("#toTop").click(function () {
+            scrollTo(0, 0);
+        })
+    })
+    //$(window).scroll(function () {
+    //    var height = $(document).scrollTop();
+    //    if (height != 0) {
+    //        $("#toTop").show();
+    //    }
+    //    else
+    //        $("#toTop").hide();
+    //})
+    //$("#toTop").click(function () {
+    //    scrollTo(0, 0);
+    //})
+</script>
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+
+

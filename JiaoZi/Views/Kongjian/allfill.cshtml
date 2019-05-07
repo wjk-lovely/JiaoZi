@@ -1,0 +1,13 @@
+﻿@model JiaoZi.Models.Kongjianban
+@*存在问题*@
+<div class="list-group">
+    @foreach (var item in Model.userupload)
+    {
+        <a href="#" class="list-group-item">
+            @Html.DisplayFor(modelItem => item.Text_path)
+            @item.Text_Time
+            @item.TextID
+        </a>
+        <a href="@item.Text_path">下载</a>
+    }
+</div>

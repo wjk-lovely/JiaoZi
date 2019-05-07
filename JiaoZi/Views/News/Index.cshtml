@@ -1,0 +1,125 @@
+﻿@{
+    Layout = "~/Views/Shared/Layoutnews.cshtml";
+}
+@using PagedList.Mvc;
+@using PagedList
+@model PagedList.IPagedList<JiaoZi.Models.News>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+    <meta charset="utf-8">
+    <title>Bootstrap 实例 - 简单的轮播（Carousel）插件</title>
+    <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="~/Content/iconfont.css" rel="stylesheet"/>
+    <link href="~/Content/iconfont1.css" rel="stylesheet" />
+    <link href="~/Content/line.css" rel="stylesheet" />
+
+    
+    <div class="container" id="con">
+        <div class="jumbotron" style="max-height:500px;height:176px;">
+            <div style="float:left;margin-top:-56px;margin-right:60px;">
+                <i class="iconfont">&#xe644;</i>
+            </div>
+            <div style="float:left">
+                <h1>教师资格证新闻</h1>
+            </div>
+         </div>
+    </div>
+    
+        <div class="container">
+            <div id="myCarousel" class="carousel slide">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    <div class="item active" style="height:550px;width:100%;">
+                        <a href="@Url.Action("Newsdetails","News",new {Newsid=22})"><img src="~/图/NewsImage/21.jpg" alt="First slide" style="height:100%;width:100%"></a>
+                        <div class="carousel-caption">中国这座城市上榜2019年全球最佳旅游目的地</div>
+                    </div>
+                    <div class="item" style="height:550px;width:100%;">
+                        <a href="@Url.Action("Newsdetails","News",new {Newsid=24})">
+                            <img src="~/图/NewsImage/23.jpg" alt="Second slide" style="height:100%;width:100%">
+                        </a>
+                    </div>
+                    <div class="item" style="height:550px;width:100%;">
+                        <a href="@Url.Action("Newsdetails","News",new {Newsid=21})">
+                            <img src="~/图/NewsImage/20.jpg" alt="Third slide" style="height:100%;width:100%">
+                        </a>
+                        <div class="carousel-caption">NASA在南极拍到罕见长方形冰山 边角齐整如同刀裁</div>
+                    </div>
+                    <div class="item" style="height:550px;width:100%;">
+                        <a href="@Url.Action("Newsdetails","News",new {Newsid=4})">
+                            <img src="~/图/NewsImage/3.jpg" alt="Fourth slide" style="height:100%;width:100%">
+                        </a>
+                        <div class="carousel-caption">这个民族脾气简单粗暴但对华友好，如今免签欢迎中国人去旅游</div>
+                    </div>
+
+                </div>
+                <!-- 轮播（Carousel）导航 -->
+                <a href="#myCarousel"data-slide="prev">
+                    <span class="glyphicon glyphicon-fast-backward" style="font-size:large">上一页</span>
+                </a>
+                <a href="#myCarousel"data-slide="next">
+                    <span class="glyphicon glyphicon-fast-forward" style="font-size:large;margin-left:86%">下一页</span>
+                </a>
+
+            </div>
+        </div>
+   <div style="margin-top:86px">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        
+            @foreach (var item in Model)
+            {
+                <div class="row">
+                    <div class="col-md-8" style="height:50px;padding-top:10px;">
+                        <a href="@Url.Action("Newsdetails","News",new {Newsid=item.NewsID})">@Html.DisplayFor(modelitem => item.Title)</a>
+                    </div>
+                    <div class="col-md-4" style="margin-bottom:30px;height:50px;padding-top:10px">
+                        @Html.DisplayFor(modelitem => item.News_Time)
+                    </div>
+
+                </div>
+                <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3);border-top:1px solid #adaaab;margin-top:-8px;" width="100%"  SIZE=8>
+
+           }
+        
+        @Html.PagedListPager(Model, page => Url.Action("Index", "News", new { page = page }))
+       </div>
+       <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    最新top10新闻
+                </h3>
+            </div>
+            <div class="panel-body">
+                @Html.Action("Latestnewsten", "News")
+            </div>
+        </div>
+       </div>
+     </div>
+   </div>
+   </div>
+
+
+   
+    <footer class="container-fluid text-center">
+        <a href="#con" title="To Top">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+
+    </footer>
+

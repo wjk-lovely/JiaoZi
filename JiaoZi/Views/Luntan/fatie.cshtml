@@ -1,0 +1,112 @@
+﻿
+@model JiaoZi.Models.Remarks
+@{
+    Layout = "~/Views/Shared/Layoutluntan.cshtml";
+}
+@{
+    ViewBag.Title = "fatie";
+}
+
+<h2>fatie</h2>
+
+    <style>
+        .whole-body{
+            height:700px;
+            width:700px;
+            margin-top:200px;
+            margin-left:279px;
+            background-color:lightgrey;
+            overflow:hidden;
+        }
+        .biaotibox{
+            /*height:200px;
+            width:20px;
+            background-color:white;
+            margin-top:20px;
+            margin-left:50px;
+            font-size:larger;*/
+        }
+        #biaotibox {
+             height:40px;
+            width:240px;
+            background-color:white;
+            margin-top:70px;
+            margin-left:243px;
+            font-size:larger;
+            text-align:center;
+            padding-top:8px;
+            padding-left:2px;
+            border:1px solid black;
+            border-radius:5px;
+
+        }
+        #tiezibox{
+            height:300px;
+            max-width:600px;
+            width:523px;
+            margin-top:50px;
+            margin-left:99px;
+            font-size:14px;
+            border:1px solid black;
+            border-radius:7px;
+            padding-left:5px;
+        }
+        .btn{
+            width:50px;
+            height:30px;
+            border:1px solid;
+            background-color:brown;
+            margin-left:80%;
+            margin-top:10%;
+        }
+      
+    </style>
+    <link href="~/Content/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/iconfont1.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/line.css" rel="stylesheet" />
+
+    <div class="container" id="con">
+        <div class="jumbotron" style="max-height:500px;height:176px;">
+            <div style="float:left;margin-top:-69px;margin-right:60px;">
+                <i class="iconfont">&#xe60f;</i>
+            </div>
+            <div style="float:left">
+                <h1>教师资格证论坛</h1>
+            </div>
+            <div style="float:left;margin-top:21px">
+                <a href="@Url.Action("Index","Luntan")"><span class="glyphicon glyphicon-home" style="font-size:36px;margin-left:60px;color:black">首页</span></a>
+            </div>
+        </div>
+    </div>
+    <div style="background-color:antiquewhite">
+    @using (Html.BeginForm("fatie", "Luntan", FormMethod.Post))
+    {
+        <div class="whole-body">
+            <div>
+                @Html.TextArea("fatietitle", new { id = "biaotibox", placeholder = "请输入标题" })
+            </div>
+            <div>
+                @Html.TextArea("fatietextarea", new { id = "tiezibox", palceholder = "请输入正文" })
+            </div>
+
+
+            @*<p>发表时间：<a>@System.DateTime</a>*@
+
+            <input type="submit" value="发表" class="btn" />
+            <p style="margin-left:80%;margin-top:20px">@System.DateTime.Today</p>
+        </div>
+    }
+</div>
+ <footer class="container-fluid text-center">
+    <a href="#con" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+
+</footer>
+  
+
+
+

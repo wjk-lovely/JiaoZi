@@ -1,0 +1,64 @@
+﻿
+
+
+
+<style>
+    #tx {
+        width: 101px;
+        height: 50px;
+        float: right;
+        margin-top: -50px;
+        /*border: 1px solid #ffffff;*/
+        border:none;
+        margin-right: 120px;
+        border-radius: 10px;
+    }
+
+    #sp {
+        position: relative;
+        right: -80px;
+        top: -20px;
+    }
+</style>
+
+
+
+@using (Ajax.BeginForm("TX", "UserInfo", new AjaxOptions()            //无用的ajax
+{
+    Confirm = "您是否要退出？",
+    HttpMethod = "Post",
+    UpdateTargetId = "tx",
+    InsertionMode = InsertionMode.Replace,
+    OnComplete = "complete"
+
+}))
+{
+    @Html.AntiForgeryToken()
+    <div id="tx">
+        @if (Session["User_id"] != null)
+        {
+            <button @Url.Action("grzx", "Default") style="position:relative;right:-55px;top:5px;">
+                <a href="@Url.Action("Order","Mall",new { id = Session["User_id"] })">所有订单</a>
+            </button>
+            <img class="img1 img-circle " src="~/@Session["User_image"]" style="width:50px;height:50px;margin-top:-40px;cursor:pointer" />
+            <button id="sp">
+                注销
+            </button>
+
+        }
+        else
+        {
+            <a href="@Url.Action("RegisteLogin", "UserInfo")">
+                <img src="~/images/Css/2.png" title="点击登录" style="width:50px;height:50px;cursor:pointer" />
+            </a>
+        }
+    </div>
+}
+
+
+<script>
+            function complete() {
+                window.location.reload();
+            }
+</script>
+

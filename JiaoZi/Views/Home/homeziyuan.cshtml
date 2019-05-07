@@ -1,0 +1,23 @@
+﻿@model JiaoZi.Models.shouyeban
+<div class="col-md-1"><h1>最<br />新<br />资<br />源</h1></div>
+<div class="col-md-1" style="height:253px;width:10px;border-left:5px #ff0000 solid"></div>
+<div class="col-md-10 ">
+    <ul>
+        @{ int i = 1;}
+        @foreach (var item in Model.newtextresource)
+        {
+        <li>
+            @item.Text_Time &nbsp;
+            <span class="label label-danger">@(i++)&nbsp;</span>
+            <a href="@Url.Action(" Index","New")" style="font-size:6px">@item.Text_Name</a>
+            <br />
+        </li>
+        <li>
+            <br />
+        </li>
+        }
+    </ul>
+</div>
+
+
+

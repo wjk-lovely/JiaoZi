@@ -1,0 +1,14 @@
+﻿@model IEnumerable<JiaoZi.Models.ShuoshuoComment_Reply>
+    @{ 
+        Layout = null;
+    }
+@foreach (var item in Model)
+{
+    @*@Session["User_id"]*@
+    @item.Users.UserName
+    <span>回复</span>
+    @item.ShuoshuoComment.Users.UserName
+    <span>：</span>
+    @item.Reply_Content
+    <br/>
+}

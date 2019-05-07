@@ -1,0 +1,869 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{13F13ADA-FE97-4644-A93D-35C71715D96F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JiaoZi</RootNamespace>
+    <AssemblyName>JiaoZi</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.5.1\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.5.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.5.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.5.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.5.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.5.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\LoginAttribute.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KongjianController.cs" />
+    <Compile Include="Controllers\LuntanController.cs" />
+    <Compile Include="Controllers\MallController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ResouceController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Advice.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AjaxMsg.cs" />
+    <Compile Include="Models\Attention.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookComment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookRelpy.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Books.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BooksDetails.cs" />
+    <Compile Include="Models\Booksview.cs" />
+    <Compile Include="Models\Buy.cs" />
+    <Compile Include="Models\Cars.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IJz\IBook.cs" />
+    <Compile Include="Models\IJz\IComments.cs" />
+    <Compile Include="Models\IJz\IFatie.cs" />
+    <Compile Include="Models\IJz\IKongjian.cs" />
+    <Compile Include="Models\IJz\IMall.cs" />
+    <Compile Include="Models\IJz\INews.cs" />
+    <Compile Include="Models\IJz\INews1.cs" />
+    <Compile Include="Models\IJz\INews2.cs" />
+    <Compile Include="Models\IJz\IRemarkcomments.cs" />
+    <Compile Include="Models\IJz\IRemark_User_Comments_Reply.cs" />
+    <Compile Include="Models\IJz\IReply.cs" />
+    <Compile Include="Models\IJz\IResource.cs" />
+    <Compile Include="Models\IJz\IShuoshuo.cs" />
+    <Compile Include="Models\IJz\IShuoshuocomment.cs" />
+    <Compile Include="Models\IJz\IText.cs" />
+    <Compile Include="Models\IJz\IUser.cs" />
+    <Compile Include="Models\IJz\IUserInfo.cs" />
+    <Compile Include="Models\IJz\IRemarks.cs" />
+    <Compile Include="Models\IJz\IRemarksbytime.cs" />
+    <Compile Include="Models\IJz\IVideo.cs" />
+    <Compile Include="Models\Jz\Mall.cs" />
+    <Compile Include="Models\Jz\RBook.cs" />
+    <Compile Include="Models\Jz\RComments.cs" />
+    <Compile Include="Models\Jz\RFatie.cs" />
+    <Compile Include="Models\Jz\RKongjian.cs" />
+    <Compile Include="Models\Jz\RNews.cs" />
+    <Compile Include="Models\Jz\RNews1.cs" />
+    <Compile Include="Models\Jz\RNews2.cs" />
+    <Compile Include="Models\Jz\RRemarkcomments.cs" />
+    <Compile Include="Models\Jz\RRemarks.cs" />
+    <Compile Include="Models\Jz\RRemarksbytime.cs" />
+    <Compile Include="Models\Jz\RRemark_User_Comments_Reply.cs" />
+    <Compile Include="Models\Jz\RReply.cs" />
+    <Compile Include="Models\Jz\RResource.cs" />
+    <Compile Include="Models\Jz\RShuoshuo.cs" />
+    <Compile Include="Models\Jz\RShuoshuocomment.cs" />
+    <Compile Include="Models\Jz\RText.cs" />
+    <Compile Include="Models\Jz\RUser.cs" />
+    <Compile Include="Models\Jz\RVideo.cs" />
+    <Compile Include="Models\Jz\UserInfo.cs" />
+    <Compile Include="Models\Kongjianban.cs" />
+    <Compile Include="Models\Mallview.cs" />
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\News.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\News1.cs" />
+    <Compile Include="Models\OrderDetails.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Orders.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrdersDetail.cs" />
+    <Compile Include="Models\RegisteLogin.cs" />
+    <Compile Include="Models\RemarkComments.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RemarkReply.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Remarks.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Remark_User_Comments_Reply.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ResourceViewModel.cs" />
+    <Compile Include="Models\salestop3.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\shouyeban.cs" />
+    <Compile Include="Models\Shuoshuo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShuoshuoComment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShuoshuoComment_Reply.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Text.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TextResource.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TieziViewModel.cs" />
+    <Compile Include="Models\Users.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Verify.cs" />
+    <Compile Include="Models\Video.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VideoResource.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.4.1.0.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\iconfont.css" />
+    <Content Include="Content\iconfont1.css" />
+    <Content Include="Content\ionic.css" />
+    <Content Include="Content\ionic.min.css" />
+    <Content Include="Content\line.css" />
+    <Content Include="Content\Mall.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Search.css" />
+    <Content Include="Content\shouye.css" />
+    <Content Include="Content\zui.min.css" />
+    <Content Include="fonts\zenicon.svg" />
+    <Content Include="images\Css\1.png" />
+    <Content Include="images\Css\2.png" />
+    <Content Include="images\Css\bg.png" />
+    <Content Include="images\Css\bjt.jpg" />
+    <Content Include="images\Css\chengxin.png" />
+    <Content Include="images\Css\dianxin.jpg" />
+    <Content Include="images\Css\dianzan.jpg" />
+    <Content Include="images\Css\dianzi.png" />
+    <Content Include="images\Css\gwab-icon.png" />
+    <Content Include="images\Css\lunbo1.jpg" />
+    <Content Include="images\Css\lunbo2.jpg" />
+    <Content Include="images\Css\lunbo3.jpg" />
+    <Content Include="images\Css\shandian.jpg" />
+    <Content Include="images\Css\unicom.png" />
+    <Content Include="images\Css\wenhao.jpg" />
+    <Content Include="images\Css\zheng.jpg" />
+    <Content Include="images\icon\icon\书文件夹.ico" />
+    <Content Include="images\icon\icon\文本1.ico" />
+    <Content Include="images\icon\icon\文本2.ico" />
+    <Content Include="images\icon\icon\文本3.ico" />
+    <Content Include="images\icon\icon\文档.ico" />
+    <Content Include="images\Lunbo\1.jpg" />
+    <Content Include="images\Lunbo\2.jpg" />
+    <Content Include="images\Lunbo\3.jpg" />
+    <Content Include="images\Lunbo\4.jpg" />
+    <Content Include="images\User_HeadImage\1.jpg" />
+    <Content Include="images\User_HeadImage\10.jpg" />
+    <Content Include="images\User_HeadImage\11.jpg" />
+    <Content Include="images\User_HeadImage\12.jpg" />
+    <Content Include="images\User_HeadImage\13.jpg" />
+    <Content Include="images\User_HeadImage\14.jpg" />
+    <Content Include="images\User_HeadImage\15.jpg" />
+    <Content Include="images\User_HeadImage\16.jpg" />
+    <Content Include="images\User_HeadImage\2.jpg" />
+    <Content Include="images\User_HeadImage\3.jpg" />
+    <Content Include="images\User_HeadImage\4.jpg" />
+    <Content Include="images\User_HeadImage\5.jpg" />
+    <Content Include="images\User_HeadImage\6.jpg" />
+    <Content Include="images\User_HeadImage\7.jpg" />
+    <Content Include="images\User_HeadImage\8.jpg" />
+    <Content Include="images\User_HeadImage\9.jpg" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="NewsImage\1.jpg" />
+    <Content Include="NewsImage\10.jpg" />
+    <Content Include="NewsImage\11.jpg" />
+    <Content Include="NewsImage\12.jpg" />
+    <Content Include="NewsImage\13.jpg" />
+    <Content Include="NewsImage\14.jpg" />
+    <Content Include="NewsImage\15.jpg" />
+    <Content Include="NewsImage\16.JPG" />
+    <Content Include="NewsImage\17.jpg" />
+    <Content Include="NewsImage\18.jpg" />
+    <Content Include="NewsImage\19.jpg" />
+    <Content Include="NewsImage\2.jpg" />
+    <Content Include="NewsImage\20.jpg" />
+    <Content Include="NewsImage\21.jpg" />
+    <Content Include="NewsImage\22.jpg" />
+    <Content Include="NewsImage\23.jpg" />
+    <Content Include="NewsImage\24.jpg" />
+    <Content Include="NewsImage\25.jpeg" />
+    <Content Include="NewsImage\26.jpg" />
+    <Content Include="NewsImage\27.jpg" />
+    <Content Include="NewsImage\28.jpg" />
+    <Content Include="NewsImage\29.jpg" />
+    <Content Include="NewsImage\3.jpg" />
+    <Content Include="NewsImage\30.jpg" />
+    <Content Include="NewsImage\31.jpg" />
+    <Content Include="NewsImage\4.jpg" />
+    <Content Include="NewsImage\5.jpg" />
+    <Content Include="NewsImage\6.jpg" />
+    <Content Include="NewsImage\7.jpg" />
+    <Content Include="NewsImage\8.jpg" />
+    <Content Include="NewsImage\9.jpg" />
+    <Content Include="Scripts\animate.js" />
+    <Content Include="Scripts\bootstrap.4.1.0.min.js" />
+    <Content Include="Scripts\jquery.3.2.1.min.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\zui.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\ionicons.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="images\Books\1.jpg" />
+    <Content Include="images\Books\10.jpg" />
+    <Content Include="images\Books\100.jpg" />
+    <Content Include="images\Books\101.jpg" />
+    <Content Include="images\Books\11.jpg" />
+    <Content Include="images\Books\12.jpg" />
+    <Content Include="images\Books\13.jpg" />
+    <Content Include="images\Books\14.jpg" />
+    <Content Include="images\Books\15.jpg" />
+    <Content Include="images\Books\16.jpg" />
+    <Content Include="images\Books\17.jpg" />
+    <Content Include="images\Books\18.jpg" />
+    <Content Include="images\Books\19.jpg" />
+    <Content Include="images\Books\2.jpg" />
+    <Content Include="images\Books\20.jpg" />
+    <Content Include="images\Books\21.jpg" />
+    <Content Include="images\Books\22.jpg" />
+    <Content Include="images\Books\23.jpg" />
+    <Content Include="images\Books\24.jpg" />
+    <Content Include="images\Books\25.jpg" />
+    <Content Include="images\Books\26.jpg" />
+    <Content Include="images\Books\27.jpg" />
+    <Content Include="images\Books\28.jpg" />
+    <Content Include="images\Books\29.jpg" />
+    <Content Include="images\Books\3.jpg" />
+    <Content Include="images\Books\30.jpg" />
+    <Content Include="images\Books\31.jpg" />
+    <Content Include="images\Books\32.jpg" />
+    <Content Include="images\Books\33.jpg" />
+    <Content Include="images\Books\34.jpg" />
+    <Content Include="images\Books\35.jpg" />
+    <Content Include="images\Books\36.jpg" />
+    <Content Include="images\Books\37.jpg" />
+    <Content Include="images\Books\38.jpg" />
+    <Content Include="images\Books\39.jpg" />
+    <Content Include="images\Books\4.jpg" />
+    <Content Include="images\Books\40.jpg" />
+    <Content Include="images\Books\41.jpg" />
+    <Content Include="images\Books\42.jpg" />
+    <Content Include="images\Books\43.jpg" />
+    <Content Include="images\Books\44.jpg" />
+    <Content Include="images\Books\45.jpg" />
+    <Content Include="images\Books\46.jpg" />
+    <Content Include="images\Books\47.jpg" />
+    <Content Include="images\Books\48.jpg" />
+    <Content Include="images\Books\49.jpg" />
+    <Content Include="images\Books\5.jpg" />
+    <Content Include="images\Books\50.jpg" />
+    <Content Include="images\Books\51.jpg" />
+    <Content Include="images\Books\52.jpg" />
+    <Content Include="images\Books\53.jpg" />
+    <Content Include="images\Books\54.jpg" />
+    <Content Include="images\Books\55.jpg" />
+    <Content Include="images\Books\56.jpg" />
+    <Content Include="images\Books\57.jpg" />
+    <Content Include="images\Books\58.jpg" />
+    <Content Include="images\Books\59.jpg" />
+    <Content Include="images\Books\6.jpg" />
+    <Content Include="images\Books\60.jpg" />
+    <Content Include="images\Books\61.jpg" />
+    <Content Include="images\Books\62.jpg" />
+    <Content Include="images\Books\63.jpg" />
+    <Content Include="images\Books\64.jpg" />
+    <Content Include="images\Books\65.jpg" />
+    <Content Include="images\Books\66.jpg" />
+    <Content Include="images\Books\67.jpg" />
+    <Content Include="images\Books\68.jpg" />
+    <Content Include="images\Books\69.jpg" />
+    <Content Include="images\Books\7.jpg" />
+    <Content Include="images\Books\70.jpg" />
+    <Content Include="images\Books\71.jpg" />
+    <Content Include="images\Books\72.jpg" />
+    <Content Include="images\Books\73.jpg" />
+    <Content Include="images\Books\74.jpg" />
+    <Content Include="images\Books\74.png" />
+    <Content Include="images\Books\75.jpg" />
+    <Content Include="images\Books\76.jpg" />
+    <Content Include="images\Books\77.jpg" />
+    <Content Include="images\Books\78.jpg" />
+    <Content Include="images\Books\79.jpg" />
+    <Content Include="images\Books\8.jpg" />
+    <Content Include="images\Books\80.jpg" />
+    <Content Include="images\Books\81.jpg" />
+    <Content Include="images\Books\82.jpg" />
+    <Content Include="images\Books\83.jpg" />
+    <Content Include="images\Books\84.jpg" />
+    <Content Include="images\Books\85.jpg" />
+    <Content Include="images\Books\86.jpg" />
+    <Content Include="images\Books\87.jpg" />
+    <Content Include="images\Books\88.jpg" />
+    <Content Include="images\Books\89.jpg" />
+    <Content Include="images\Books\9.jpg" />
+    <Content Include="images\Books\90.jpg" />
+    <Content Include="images\Books\91.jpg" />
+    <Content Include="images\Books\92.jpg" />
+    <Content Include="images\Books\93.jpg" />
+    <Content Include="images\Books\94.jpg" />
+    <Content Include="images\Books\95.jpg" />
+    <Content Include="images\Books\96.jpg" />
+    <Content Include="images\Books\97.jpg" />
+    <Content Include="images\Books\98.jpg" />
+    <Content Include="images\Books\99.jpg" />
+    <Content Include="images\Css\head.jpg" />
+    <Content Include="images\Css\lbt1.jpg" />
+    <Content Include="images\Css\lbt2.jpg" />
+    <Content Include="images\Css\lbt3.jpg" />
+    <Content Include="images\Css\Logo.jpg" />
+    <Content Include="images\Css\totop.jpg" />
+    <Content Include="images\Head\1.jpg" />
+    <Content Include="images\icon\icon\love.ico" />
+    <Content Include="images\icon\icon\shou.ico" />
+    <Content Include="images\icon\icon\teacher.ico" />
+    <Content Include="images\icon\kongjian\shuoshuobeijin2.png" />
+    <Content Include="images\icon\kongjian\shuoshuobeijin4.png" />
+    <Content Include="images\icon\kongjian\shuoshuobeijin41.png" />
+    <Content Include="images\icon\kongjian\shuoshuobeijin4_01.png" />
+    <Content Include="images\icon\kongjian\shuoshuobeijin4_02.png" />
+    <Content Include="images\icon\kongjian\shuoshuobeijin4_03.gif" />
+    <Content Include="images\icon\kongjian\shuoshuobeijing.png" />
+    <Content Include="images\Mall\logo.jpg" />
+    <Content Include="images\Mall\tx.jpg" />
+    <Content Include="images\icon\1221605.gif" />
+    <Content Include="images\icon\ooopic_1544092560.ico" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="fonts\ionicons.eot" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.woff" />
+    <Content Include="fonts\zenicon.eot" />
+    <Content Include="fonts\zenicon.ttf" />
+    <Content Include="fonts\zenicon.woff" />
+    <Content Include="TextReource\2015-下 小学教育知识与能力真题.doc" />
+    <Content Include="TextReource\2015-下 小学综合素质真题及答案.doc" />
+    <Content Include="TextReource\2017-上 中学综合素质真题.docx" />
+    <Content Include="TextReource\2017-上 小学教育知识与能力真题.doc" />
+    <Content Include="TextReource\中学-教育知识与能力-模拟题1.doc" />
+    <Content Include="TextReource\中学-综合素质-模拟题1.doc" />
+    <Content Include="TextReource\中学-综合素质-模拟题2.doc" />
+    <Content Include="TextReource\小学-教育知识与能力-模拟题1.doc" />
+    <Content Include="TextReource\高中-语文学科知识与能力-模拟题1.doc" />
+    <Content Include="图\NewsImage\1.jpg" />
+    <Content Include="图\NewsImage\10.jpg" />
+    <Content Include="图\NewsImage\11.jpg" />
+    <Content Include="图\NewsImage\12.jpg" />
+    <Content Include="图\NewsImage\13.jpg" />
+    <Content Include="图\NewsImage\14.jpg" />
+    <Content Include="图\NewsImage\15.jpg" />
+    <Content Include="图\NewsImage\16.JPG" />
+    <Content Include="图\NewsImage\17.jpg" />
+    <Content Include="图\NewsImage\18.jpg" />
+    <Content Include="图\NewsImage\19.jpg" />
+    <Content Include="图\NewsImage\2.jpg" />
+    <Content Include="图\NewsImage\20.jpg" />
+    <Content Include="图\NewsImage\21.jpg" />
+    <Content Include="图\NewsImage\22.jpg" />
+    <Content Include="图\NewsImage\23.jpg" />
+    <Content Include="图\NewsImage\24.jpg" />
+    <Content Include="图\NewsImage\25.jpeg" />
+    <Content Include="图\NewsImage\26.jpg" />
+    <Content Include="图\NewsImage\27.jpg" />
+    <Content Include="图\NewsImage\28.jpg" />
+    <Content Include="图\NewsImage\29.jpg" />
+    <Content Include="图\NewsImage\3.jpg" />
+    <Content Include="图\NewsImage\30.jpg" />
+    <Content Include="图\NewsImage\31.jpg" />
+    <Content Include="图\NewsImage\4.jpg" />
+    <Content Include="图\NewsImage\5.jpg" />
+    <Content Include="图\NewsImage\6.jpg" />
+    <Content Include="图\NewsImage\7.jpg" />
+    <Content Include="图\NewsImage\8.jpg" />
+    <Content Include="图\NewsImage\9.jpg" />
+    <Content Include="图\RemarksImage\1.jpg" />
+    <Content Include="图\RemarksImage\10.jpg" />
+    <Content Include="图\RemarksImage\2.jpg" />
+    <Content Include="图\RemarksImage\3.jpg" />
+    <Content Include="图\RemarksImage\4.jpg" />
+    <Content Include="图\RemarksImage\5.jpg" />
+    <Content Include="图\RemarksImage\6.jpg" />
+    <Content Include="图\RemarksImage\7.png" />
+    <Content Include="图\RemarksImage\8.jpg" />
+    <Content Include="图\RemarksImage\9.jpg" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\ionic-angular.js" />
+    <Content Include="Scripts\ionic-angular.min.js" />
+    <Content Include="Scripts\ionic.bundle.js" />
+    <Content Include="Scripts\ionic.bundle.min.js" />
+    <Content Include="Scripts\ionic.js" />
+    <Content Include="Scripts\ionic.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Content\zui.uploader.min.css" />
+    <Content Include="Scripts\zui.uploader.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\TX.cshtml" />
+    <Content Include="Views\Home\Page.cshtml" />
+    <Content Include="Views\Shared\Layoutmall.cshtml" />
+    <Content Include="Views\Home\Booksalestop3.cshtml" />
+    <Content Include="Views\Home\homezixun.cshtml" />
+    <Content Include="Views\Home\homeziyuan.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\newissuebook.cshtml" />
+    <Content Include="Views\Kongjian\File.cshtml" />
+    <Content Include="Views\Kongjian\Index.cshtml" />
+    <Content Include="Views\Kongjian\shuoshuo.cshtml" />
+    <Content Include="Views\Kongjian\video.cshtml" />
+    <Content Include="Views\Kongjian\allshuoshuo.cshtml" />
+    <Content Include="Views\Kongjian\allfill.cshtml" />
+    <Content Include="Views\Kongjian\allvideo.cshtml" />
+    <Content Include="Views\Shared\Layoutkongjian.cshtml" />
+    <Content Include="Views\Kongjian\shuoshuocomment.cshtml" />
+    <Content Include="Views\UserInfo\FindPassword.cshtml" />
+    <Content Include="Views\UserInfo\GetImg.cshtml" />
+    <Content Include="Views\UserInfo\RegisteLogin.cshtml" />
+    <Content Include="Views\Mall\BooksDetails.cshtml" />
+    <Content Include="Views\Mall\BooksShow.cshtml" />
+    <Content Include="Views\Mall\BooksType.cshtml" />
+    <Content Include="Views\Mall\Comment.cshtml" />
+    <Content Include="Views\Mall\Index.cshtml" />
+    <Content Include="Views\Mall\nav.cshtml" />
+    <Content Include="Views\Mall\OrderDetails.cshtml" />
+    <Content Include="Views\Mall\Reply.cshtml" />
+    <Content Include="Views\Mall\Sear.cshtml" />
+    <Content Include="Views\Resouce\Index.cshtml" />
+    <Content Include="Views\Resouce\videoresouce.cshtml" />
+    <Content Include="Views\Resouce\fileresouce.cshtml" />
+    <Content Include="Views\Resouce\allresource.cshtml" />
+    <Content Include="TextReource\复习.ppt" />
+    <Content Include="TextReource\测验.doc" />
+    <Content Include="TextReource\第一章概率论的基本概念.ppt" />
+    <Content Include="TextReource\第七章参数估计.ppt" />
+    <Content Include="TextReource\第三章多维随机变量及其分布.ppt" />
+    <Content Include="TextReource\第二章随机变量及其分布.ppt" />
+    <Content Include="TextReource\第五章大数定理及中心极限定理.ppt" />
+    <Content Include="TextReource\第六章样本及抽样分布.ppt" />
+    <Content Include="TextReource\第四章随机变量的数字特征.ppt" />
+    <Content Include="TextReource\题库.doc" />
+    <Content Include="TextReource\1.docx" />
+    <Content Include="TextReource\10.docx" />
+    <Content Include="TextReource\11.docx" />
+    <Content Include="TextReource\12.docx" />
+    <Content Include="TextReource\13.docx" />
+    <Content Include="TextReource\14.docx" />
+    <Content Include="TextReource\15.docx" />
+    <Content Include="TextReource\16.docx" />
+    <Content Include="TextReource\17.docx" />
+    <Content Include="TextReource\18.docx" />
+    <Content Include="TextReource\19.docx" />
+    <Content Include="TextReource\2.docx" />
+    <Content Include="TextReource\20.docx" />
+    <Content Include="TextReource\21.docx" />
+    <Content Include="TextReource\22.docx" />
+    <Content Include="TextReource\23.docx" />
+    <Content Include="TextReource\24.docx" />
+    <Content Include="TextReource\25.docx" />
+    <Content Include="TextReource\26.docx" />
+    <Content Include="TextReource\27.docx" />
+    <Content Include="TextReource\28.docx" />
+    <Content Include="TextReource\29.docx" />
+    <Content Include="TextReource\3.docx" />
+    <Content Include="TextReource\30.docx" />
+    <Content Include="TextReource\31.docx" />
+    <Content Include="TextReource\32.docx" />
+    <Content Include="TextReource\33.docx" />
+    <Content Include="TextReource\34.docx" />
+    <Content Include="TextReource\35.docx" />
+    <Content Include="TextReource\36.docx" />
+    <Content Include="TextReource\37.docx" />
+    <Content Include="TextReource\38.docx" />
+    <Content Include="TextReource\39.docx" />
+    <Content Include="TextReource\4.docx" />
+    <Content Include="TextReource\40.docx" />
+    <Content Include="TextReource\41.docx" />
+    <Content Include="TextReource\43.docx" />
+    <Content Include="TextReource\44.docx" />
+    <Content Include="TextReource\45.docx" />
+    <Content Include="TextReource\46.docx" />
+    <Content Include="TextReource\47.docx" />
+    <Content Include="TextReource\48.docx" />
+    <Content Include="TextReource\49.docx" />
+    <Content Include="TextReource\5.docx" />
+    <Content Include="TextReource\50.docx" />
+    <Content Include="TextReource\51.docx" />
+    <Content Include="TextReource\52.docx" />
+    <Content Include="TextReource\53.docx" />
+    <Content Include="TextReource\54.docx" />
+    <Content Include="TextReource\55.docx" />
+    <Content Include="TextReource\56.docx" />
+    <Content Include="TextReource\57.docx" />
+    <Content Include="TextReource\58.docx" />
+    <Content Include="TextReource\59.docx" />
+    <Content Include="TextReource\6.docx" />
+    <Content Include="TextReource\60.docx" />
+    <Content Include="TextReource\61.docx" />
+    <Content Include="TextReource\62.docx" />
+    <Content Include="TextReource\63.docx" />
+    <Content Include="TextReource\64.docx" />
+    <Content Include="TextReource\65.docx" />
+    <Content Include="TextReource\67.docx" />
+    <Content Include="TextReource\68.docx" />
+    <Content Include="TextReource\69.docx" />
+    <Content Include="TextReource\7.docx" />
+    <Content Include="TextReource\70.docx" />
+    <Content Include="TextReource\71.docx" />
+    <Content Include="TextReource\72.docx" />
+    <Content Include="TextReource\73.docx" />
+    <Content Include="TextReource\74.docx" />
+    <Content Include="TextReource\75.docx" />
+    <Content Include="TextReource\76.docx" />
+    <Content Include="TextReource\77.docx" />
+    <Content Include="TextReource\78.docx" />
+    <Content Include="TextReource\79.docx" />
+    <Content Include="TextReource\8.docx" />
+    <Content Include="TextReource\80.docx" />
+    <Content Include="TextReource\81.docx" />
+    <Content Include="TextReource\82.docx" />
+    <Content Include="TextReource\83.docx" />
+    <Content Include="TextReource\9.docx" />
+    <Content Include="Views\Kongjian\guanzhu.cshtml" />
+    <Content Include="Views\Kongjian\fen.cshtml" />
+    <Content Include="Views\Kongjian\otheruserkongjian.cshtml" />
+    <Content Include="Views\Kongjian\shuoshuocommentreply.cshtml" />
+    <Content Include="Views\Resouce\searchresouce.cshtml" />
+    <Content Include="Views\Kongjian\dongtai.cshtml" />
+    <Content Include="Views\Shared\Layoutkongjian2.cshtml" />
+    <Content Include="Views\Mall\Cars.cshtml" />
+    <Content Include="Views\Mall\Order.cshtml" />
+    <Content Include="Views\Luntan\fatie.cshtml" />
+    <Content Include="Views\Luntan\HF.cshtml" />
+    <Content Include="Views\Luntan\Index.cshtml" />
+    <Content Include="Views\Luntan\Index2.cshtml" />
+    <Content Include="Views\Luntan\PL.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Search\Search1.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Latestnewsten.cshtml" />
+    <Content Include="Views\News\Newsdetails.cshtml" />
+    <Content Include="Views\Shared\Layoutluntan.cshtml" />
+    <Content Include="Views\Shared\Layoutnews.cshtml" />
+    <Content Include="Views\Mall\ReplyBox.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="images\Kongjian\text\" />
+    <Folder Include="images\News\" />
+    <Folder Include="kindeditor\" />
+    <Folder Include="Text\" />
+    <Folder Include="Video\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49846</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49846/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

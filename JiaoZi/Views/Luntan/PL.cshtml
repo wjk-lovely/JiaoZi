@@ -1,0 +1,49 @@
+﻿@*@model IEnumerable<JiaoZi.Models.RemarkComments>*@ 
+@model JiaoZi.Models.TieziViewModel
+@{ 
+    Layout = null;
+}
+<style>
+    .img{
+        height:70px;
+        width:55px;
+        border-radius:100%;
+        float:left;
+    }
+</style>
+
+@{ string tempid;
+}
+    @foreach (var item in Model.Getpinglun)
+    {
+        tempid = "dev" + item.RemarkCommentID.ToString();
+        <img src="~/images/@item.Users.HeadImage" class="img" />
+        <div style="border:3px solid white;border-radius:15px;padding-top:10px;padding-bottom:10px;margin-right:20px;margin-left:75px;padding-left:10px">@Html.DisplayFor(modelItem => item.Comment_Content,new { id=item.RemarkID})</div>
+        <div>
+       
+       <div style="padding-top:20px;padding-right:50px;margin-left:82%"> @Html.DisplayFor(modelItem => item.Users.UserName,new { id = item.RemarkID})</div>
+            </div>
+        <div style="padding-right:50px;margin-left:72%">@Html.DisplayFor(modelItem => item.Comment_Time,new { id=item.RemarkID})</div>
+        
+    
+
+           <div class="hf" style="float:right;margin-right: 30px;">
+               <button style="background-color:#c03f3c" class="btn btn-xs btn-default" onclick="document.getElementById('@tempid').style.display = document.getElementById('@tempid').style.display == '' ? 'none' : ''">回复</button>
+               
+           </div>
+           <div id="@tempid" style="display:none;" class="ReplyBox">
+               @using (Html.BeginForm("HF", "Luntan", new {pinglunid = item.RemarkCommentID }, FormMethod.Post))
+               {
+                   <textarea class="collapse in" rows="6" name="TextBox2" placeholder="我也要简单说两句" style="resize:none;margin:10px auto;border-radius:4px;height:70px;max-width:700px;width:500px;-webkit-border-radius:4px;-moz-border-radius:4px;border:1px solid rgba(0, 0, 0,0.5);" id="demo"></textarea>
+                   <div>
+                       <input type="submit" value="提交" style="border-style:none;height:25px;width:70px;background-color:#c03f3c;margin-left:85px;" data-toggle="collapse" data-target="#demo" />
+                   </div>
+               }
+               
+           </div>
+        <div style="margin-left:90px;">
+         @Html.Action("HF","Luntan",new { pinglunid=item.RemarkCommentID})
+        </div>
+    }
+
+

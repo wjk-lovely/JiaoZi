@@ -1,0 +1,31 @@
+﻿@using PagedList.Mvc;
+@using PagedList
+@model PagedList.IPagedList<JiaoZi.Models.Remark_User_Comments_Reply>
+@*@model IEnumerable<JiaoZi.Models.Remark_User_Comments_Reply>*@
+@foreach (var item in Model.OrderByDescending(r => r.Remark_time))
+{
+
+    <div>
+        @using (Html.BeginForm("Search", "Search", FormMethod.Post))
+        {
+            @Html.TextBox("title");
+            <button>搜索</button>
+            <div class="col-md-4" style="height:50px;padding-top:10px;">
+                <a href="@Url.Action("Index2", "Luntan", new { id = item.RemarkID })">@Html.DisplayFor(modelItem => item.Title)</a>
+            </div>
+
+
+            <div class="col-md-2" style="height:50px;padding-top:10px;"><a href="#">@Html.DisplayFor(modelItem => item.UserName)</a></div>
+
+            <div class="col-md-2" style="height:50px;padding-top:10px;"> @Html.DisplayFor(modelItem => item.pinglunshu)</div>
+            @*<div class="col-md-2" style="height:50px;padding-top:10px;">@Html.DisplayFor(modelItem => item.huifushu)</div>*@
+
+            <div class="col-md-2" style="height:50px;padding-top:10px;">@Html.DisplayFor(modelItem => item.Remark_time)</div>
+        }
+    </div>
+}
+@Html.PagedListPager(Model, page => Url.Action("Search", "Search", new { page = page }))
+
+
+
+

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<JiaoZi.Models.News>
+   @{ 
+       Layout = null;
+   }
+
+@foreach (var item in Model.OrderByDescending(r=>r.News_Time))
+{
+    <div class="row">
+        <div class="col-md-9" style="height:50px;padding-top:10px;">
+            <a href="@Url.Action("Newsdetails","News",new {Newsid=item.NewsID})">@Html.DisplayFor(modelitem => item.Title)</a>
+        </div>
+        <div class="col-md-3" style="height:50px;padding-top:10px;">
+            @Html.DisplayFor(modelitem => item.News_Time)
+        </div>
+    </div>
+}
+

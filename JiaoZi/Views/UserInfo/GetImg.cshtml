@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div class="yzm">
+        @using (Ajax.BeginForm("GetImg", "UserInfo", new AjaxOptions()
+        {
+            HttpMethod = "Post",
+            UpdateTargetId = "GM",
+            InsertionMode = InsertionMode.Replace
+        }))
+        {
+            <img id="GL_StandardCode" style="cursor: pointer;" src="@Url.Action("GetImg", "UserInfo")?t=@DateTime.Now.Ticks" title="看不清，点击换一张" />
+            <button id="GG">换一张</button>
+        }
+    </div>
+
+</body>
+</html>
+<script>
+    @*$(function () {
+        $("#GG").click(function () {
+            alert("hello");
+             $("#GM").src="@Url.Action("GetImg", "Default")" + "?t=" + (new Date()).getTime();
+        })
+    })*@
+    @*function mm() {
+      alert("hello");
+      $("#GM").src="@Url.Action("GetImg", "Default")" + "?t=" + (new Date()).getTime();
+    }*@
+</script>

@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Layoutkongjian2</title>
+</head>
+<body>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <style>
+        #Mydaohang1 {
+            background-color: black;
+            border-color: black;
+            height: 75px;
+        }
+    </style>
+    <div class="navbar navbar-inverse navbar-fixed-top" id="Mydaohang1">
+        <div class="container-fluid">
+            @*<div style="width:50px;height:50px;float:left;margin-left:30px">
+                <img src="@Session["User_image"]" style="width:45px;height:45px;" />
+            </div>*@
+            <div class="navbar-header" style="margin-left:240px;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("教资考试服务网", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("考试中心", "KSZX", "Home")</li>*@
+                    <li>@Html.ActionLink("教资资讯", "Index", "News")</li>
+                    <li>@Html.ActionLink("个人空间", "Index", "Kongjian")</li>
+                    <li>@Html.ActionLink("备考资源库", "Index", "Resouce")</li>
+                    <li>@Html.ActionLink("考试论坛", "Index", "Luntan")</li>
+                    <li>@Html.ActionLink("备考书店", "Index", "Mall")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="height:89px;width:100%;background-color:indianred">
+        <span>当前所在页</span>
+    </div>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div style="height:150px" class="col-md-3">
+                            <img src="@Session["2"]"  style="height:150px;width:150px;border:5px ridge white" />
+                        </div>
+                        <div class="col-md-9 row" style="height:100px;font-size:large;color:black">
+                            <p>网名</p>
+                            <hr />
+                            <div class="col-md-4">
+                                <img src="~/images/icon/icon/love.ico" style="height:10px;width:10px;" />
+                                @*<a href="@Url.Action("guanzhu", "Kongjian", new {userid1=@Session["otheruserid"], @style = "color:black;font-size:larger" })" target="_blank">
+                                    关注
+                                </a>*@
+                                @*<a href="@Url.Action("guanzhu", "Kongjian", new {userid1=ViewBag.id, @style = "color:black;font-size:larger" })" target="_blank">
+                                    关注
+                                </a>*@
+                                <a href="@Url.Action("guanzhu", "Kongjian", new {userid1=@Session["1"], @style = "color:black;font-size:larger" })" target="_blank">
+                                    关注
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="~/images/icon/icon/love.ico" style="height:10px;width:10px;" />
+                                <a href="@Url.Action("fen", "Kongjian", new { userid1=@Session["1"], @style = "color:black;font-size:larger" })" target="_blank">
+                                    粉丝
+                                </a>
+                            </div>
+                            <div class="col-md-4" style="color:black;font-size:larger">动态</div>
+                            <p>资料</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">   
+                    @RenderBody()        
+            </div>
+        </div>
+    </div>
+   
+</body>
+</html>
